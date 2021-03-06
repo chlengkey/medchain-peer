@@ -1,1 +1,1 @@
-# medchain-peer
+# Medical Chain Peer Repository
