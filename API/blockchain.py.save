@@ -1,7 +1,5 @@
 import hashlib
-import json
 from datetime import date
-import time
 
 # Universal Function
 def today_datetime():
@@ -9,53 +7,46 @@ def today_datetime():
     return str(DD) + "-" + str(MM) + "-" + str(YYYY)
 
 def timestamp():
-    return time.time()
+    return "tes"
 
 # Block Class
 class Block():
-  """kelas untuk block"""
 
+  hash      = ""
   timestamp = ""
   data      = {}
-  hash      = ""
   prevHash  = ""
   index     = 0
   nonce     = 0
 
-  def __init__(self, index, data, prevHash=""):
-      """Constructor untuk kelas block"""
-      self.timestamp = timestamp()
+  def __init__(self, index, timestamp, data, prevHash=""):
+      self.timestamp = timestamp
       self.data      = data
       self.prevHash  = prevHash
       self.hash      = self.calculate_hash()
       self.index     = index
 
   def calculate_hash(self):
-      """Fungsi untuk menghitung hash"""
       hash = str(self.timestamp) + str(self.data) + str(self.nonce) + str(self.prevHash)
       hash = hash.encode('utf-8')
       return hashlib.sha256(hash).hexdigest()
 
-  def mine_block(self, difficulty=4):
-      """Fungsi untuk melakukan mining"""
-      while(self.hash[0:difficulty] != str("0").zfill(difficulty)):
+  def mine_block(self):
+      while(self.hash[0] == "b" and self.hash[1] ):
         self.nonce = self.nonce + 1
         self.hash = self.calculate_hash()
-        print("{},{},{}".format(self.hash[0:2], self.hash, self.nonce))
+        print("{},{},{}".format(self.hash[0], self.hash, self.nonce))
 
 # Blockchain Class
 class Blockchain():
-  """Kelas Blockchain"""
 
   chain = []
   pending_blocks = []
 
   def __init__(self):
-      """Constructor"""
       self.chain = [self.createGenesisBlock()]
 
   def chainValid(self):
-      """Apakah blockchain valid?"""
       if(len(self.chain) > 1):
          blockIndex = 1
          while(blockIndex <= (len(self.chain) - 1)):
@@ -75,15 +66,31 @@ class Blockchain():
       return True
 
   def createGenesisBlock(self):
-      """Membuat genesis block"""
-      return Block(0, "genesis block", "0")
+      return Block(0,"1-1-2021", "genesis block", "0")
 
   def getLatestBlock(self):
-      """Mengambil block terakhir dari blockchain"""
       return self.chain[len(self.chain) - 1]
 
   def addBlock(self, block):
-      """Menambahkan block baru ke dalam blockchain"""
       block.prevHash = self.getLatestBlock().hash
       block.mine_block()
       self.chain.append(block)
+
+data = {
+  "pasien_id"      : "PS340511902",
+  "pasien_nama"    : "Chrisdityra Lengkey",
+  "pasien_keluhan" : "Sakit kepala",
+  "date_time"      : today_datetime()
+}
+
+# Made new blockchain
+medicalChain = Blockchain()
+
+# Add new block to blockchain
+medicalChain.addBlock(Block(1, today_datetime(), data))
+print(medicalChain.chain)
+
+# Check if block is valid
+print("Chain Valid : {}".format(medicalChain.chainValid()))
+medicalChain.chain[1].data["pasien_id"] = "coba"
+print("Chain Valid : {}".format(medicalChain.chainValid()))
