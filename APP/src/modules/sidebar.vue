@@ -5,16 +5,23 @@
 
 			<div class="px-4 mt-8">
 				<img src="@/assets/logo.png" class="w-8 mb-5">
-				<p class="font-extrabold text-white text-lg">Halo, Chrisdityra</p>
+				<p class="font-extrabold text-white text-lg">Halo, {{user.username}}</p>
+				<p class="text-xs text-white mb-2 mt-0.5">{{user.medical_service_level}} {{user.medical_service_name}}</p>
 				<p class="text-sm text-white mt-0.5">Blockchain based medical service</p>
 				<div class="flex mt-4">
-					<p v-if="blockchainValidity" class="font-semibold text-sm green-button"><ShieldCheck class="-mt-0.5 mr-1 -ml-1" /> Valid</p>
-					<p v-else class="font-semibold text-sm red-button"><ShieldCheck class="-mt-0.5 mr-1 -ml-1" /> Error</p>
-					<p class="red-secondary-button text-sm ml-1"><LogOut class="-mt-0.5 mr-1" />Keluar</p>	
+					<p v-if="blockchainValidity" class="font-semibold text-sm green-button"
+					   title="Blockchain anda valid">
+						<ShieldCheck class="-mt-0.5 mr-1 -ml-1" /> Valid</p>
+					<p v-else class="font-semibold text-sm red-button"
+					   title="Blockchain anda tidak valid">
+						<ShieldCheck class="-mt-0.5 mr-1 -ml-1" /> Error</p>
+					<p class="red-secondary-button text-sm ml-1" @click="logOut()">
+						<LogOut class="-mt-0.5 mr-1" />Keluar</p>	
 				</div>
 				
 			</div>
 			
+			<!-- divider -->
 			<hr class="my-5 border-white opacity-30" />
 
 			<div class="w-full px-5 text-sm relative">
@@ -52,10 +59,26 @@
 			// icons
 			Plus, Home, UserAdd, UserGroup, LogOut, Cog, ShieldCheck
 		},
+
 		data(){
 			return{
+
+				// immutable
 				blockchainValidity : false,
+			
+				// mutable
+				user : {
+					username     : "Chrisdityra",
+					medical_service_name  : "TOMOHON",
+					medical_service_level : "KLINIK"
+				}
 			}
-		} 
+		},
+
+		methods : {
+			logOut : function(){
+				alert("Logging out!");
+			}
+		}
 	}
 </script>
