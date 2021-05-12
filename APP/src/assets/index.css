@@ -6,6 +6,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Glow Button */
+.blue-glow-button{
+	@apply font-bold bg-blue-100 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-blue-600 inline-block;
+}
+
+.green-glow-button{
+	@apply font-bold bg-green-100 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-green-600 inline-block;
+}
+
+.yellow-glow-button{
+	@apply font-bold bg-yellow-100 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-yellow-600 inline-block;
+}
+
+.red-glow-button{
+	@apply font-bold bg-red-100 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-red-600 inline-block;
+}
+
+/* Solid Button */
+.green-button{
+	@apply font-bold bg-green-600 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-white inline-block;
+}
 
 *{
   font-family: "Lato";

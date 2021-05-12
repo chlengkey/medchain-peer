@@ -4,7 +4,7 @@
     <Sidebar/>
     <router-view/>
   </div>
-
+  <!--
   <h1>{{ title }}</h1>
   <p>Selesai Menambahkan Data?</p>
 
@@ -22,15 +22,17 @@
 
   </div>
 
-  <button @click="toggleModal">Tambahkan Data</button>
+  <button @click="toggleModal">Tambahkan Data</button>-->
   
 </template>
 
 <script>
-import { Modal } from './views/Modal.vue'
+import { Modal } from '@/views/Modal.vue'
+import Sidebar from '@/modules/sidebar.vue'
 
 export default {
   name: 'App',
+  components : {Sidebar},
   views: { 
       Modal
   },
@@ -55,10 +57,3 @@ export default {
 <style>
 
 </style>
-
-<script type="text/javascript">
-  import Sidebar from '@/modules/sidebar.vue'
-  export default{
-    components : {Sidebar}
-  }
-</script>
