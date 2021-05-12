@@ -1,10 +1,51 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+
+  <h1>{{ title }}</h1>
+  <p>Selesai Menambahkan Data?</p>
+
+  <div v-if="showModal">
+
+    <Modal theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">more info</a>
+        <a href="#">status blockchain</a>
+      </template>
+
+      <h1>Berhasil Ditambahkan</h1>
+      <p>Data yang telah ditambahkan tidak dapat diubah kembali</p>
+    </Modal>
+
   </div>
-  <router-view/>
+
+  <button @click="toggleModal">Tambahkan Data</button>
+  
 </template>
+
+<script>
+import { Modal } from './views/Modal.vue'
+
+export default {
+  name: 'App',
+  views: { 
+      Modal
+  },
+  data() {
+    return {
+      title: 'Medical Chain',
+      showModal: false,
+      showModalTwo: false
+    }
+  },
+  methods: {
+    toggleModal(){
+      this.showModal = !this.showModal
+    },
+    toggleModalTwo(){
+      this.showModalTwo = !this.showModalTwo
+    }
+  }
+}
+</script>
 
 <style>
 #app {
@@ -13,18 +54,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-top: 60px;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+h1 {
+  border-bottom: 1px solid #ddd;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 </style>
