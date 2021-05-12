@@ -27,6 +27,14 @@
 .green-button{
 	@apply font-bold bg-green-600 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-white inline-block;
 }
+.red-button{
+	@apply font-bold bg-red-600 px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-white inline-block;
+}
+
+/* Secondary Button */
+.red-secondary-button{
+	@apply font-bold px-4 py-2 transition hover:bg-gray-900 hover:text-white cursor-pointer rounded-md text-red-600 inline-block;
+} 
 
 *{
   font-family: "Lato";
