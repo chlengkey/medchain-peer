@@ -48,7 +48,7 @@
 <style type="text/css">
 	
 	.nav-item{
-		@apply text-white font-semibold mt-2 hover:text-gray-800 transition rounded-md  cursor-pointer py-2
+		@apply text-white font-semibold mt-2 hover:text-gray-800 transition rounded-md  cursor-pointer py-2;
 	}
 
 </style>
