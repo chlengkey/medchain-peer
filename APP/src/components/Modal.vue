@@ -14,7 +14,6 @@
 					</div>
 				</div>
 		</transition>
-
 	</div>
 </template>
 
@@ -37,12 +36,8 @@
 			}
 		},
 		methods : {
-			openModal : function(){
-				this.modalActive = true;
-			},
-			closeModal : function(){
-				this.modalActive = false;
-			}
+			openModal(){ this.modalActive = true},
+			closeModal : function(){ this.modalActive = false}
 		}
 	}
 </script>

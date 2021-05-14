@@ -19,6 +19,11 @@
 
 <script type="text/javascript">
 	
+    /* TOKEN MODAL
+	*  Bertugas untuk memeriksa jika token yang diberikan adalah valid atau tidak
+	*  [VALID] diarahkan ke url /pasien/periksa/{nomor_token}
+	*/
+
 	// Components
 	import Modal from '@/components/Modal.vue';
 	import Text from '@/components/form_component/text.vue'
@@ -47,9 +52,8 @@
 
 			inspect(){
 				const app = this;
-				app.changeFooter('text-gray-400','Pelajari token lebih lanjut disini');
-				if (!app.token) {app.changeFooter("text-red-600", "Anda harus mengisi token");return}
-				app.animateSpinIcon = true;
+				if (!app.tokenFormatValid()) {return}
+
 				app.changeFooter('text-yellow-400','Mengecek Token');
 				/*this.$refs.modal.closeModal();
 				setTimeout(function(){
@@ -59,6 +63,19 @@
 					app.changeFooter('text-red-600', "Token tidak valid");
 					app.animateSpinIcon = false;
 				},1000)
+			},
+
+			tokenFormatValid(){
+				this.changeFooter('text-gray-400','Pelajari token lebih lanjut disini');
+
+				// Validate empty
+				if (!this.token) {this.changeFooter("text-red-600", "Anda harus mengisi token");return false}
+
+				// Validate length
+				if (this.token.length < 5) {this.changeFooter("text-red-600", "Token terdiri dari 5 angka");return false}
+
+				// Validate Success
+				return true
 			},
 
 			changeFooter(css, text){
