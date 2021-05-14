@@ -1,23 +1,7 @@
 <template>
-	<div>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-		<p>check</p>
-	</div>
+	<nav>
+		<ul>
+			<li><router-link to="/DaftarPasien">DaftarPasien</router-link>/</li>
+		</ul>
+	</nav>
 </template>
