@@ -2,7 +2,6 @@
 
   <div class="flex">
     <Sidebar/>
-    <Dashboard/>
     <router-view/>
   </div>
   <!--
@@ -28,7 +27,7 @@
 </template>
 
 <script>
-import { Modal } from '@/views/Modal.vue'
+//import { Modal } from '@/views/Modal.vue'
 import Sidebar from '@/modules/sidebar.vue'
 import Dashboard from '@/views/Dashboard.vue'
 
@@ -36,7 +35,7 @@ export default {
   name: 'App',
   components : {Sidebar, Dashboard},
   views: { 
-      Modal,
+  //    Modal,
       Dashboard
   },
   data() {

@@ -1,8 +1,10 @@
 <template>
-	<div class="relative h-full">
+	<div class="h-full">
+		<TokenModal ref="tokenModal" />
+
 		<div class="md:w-56"></div>
 		<div class=" fixed w-56 bg-blue-500 h-full shadow">
-
+			
 			<div class="px-4 mt-8">
 				<img src="@/assets/logo.png" class="w-8 mb-5">
 				<p class="font-extrabold text-white text-lg">Halo, {{user.username}}</p>
@@ -25,9 +27,16 @@
 			<hr class="my-5 border-white opacity-30" />
 
 			<div class="w-full px-5 text-sm relative">
-				<p class="yellow-glow-button w-full"><Plus class="mr-1" />Pemeriksaan Baru</p>
-				<p class="nav-item"><Home      class="-mt-0.5 mr-2"/>Dashboard</p>
-				<p class="nav-item"><UserGroup class="-mt-0.5 mr-2"/>Daftar Pasien</p>
+				<p class="yellow-glow-button w-full" @click="$refs.tokenModal.open()"><Plus class="mr-1" />Pemeriksaan Baru</p>
+
+				<router-link to="/">
+					<p class="nav-item"><Home class="-mt-0.5 mr-2"/>Dashboard</p>
+				</router-link>
+				
+				<router-link to="/rer">
+					<p class="nav-item"><UserGroup class="-mt-0.5 mr-2"/>Daftar Pasien</p>
+				</router-link>
+
 				<p class="nav-item"><UserAdd   class="-mt-0.5 mr-2"/>Pasien Baru</p>
 				<p class="nav-item"><Cog       class="-mt-0.5 mr-2"/>Pengaturan</p>
 			</div>
@@ -46,6 +55,10 @@
 
 <script type="text/javascript">
 	
+	// Components
+	import TokenModal from '@/modules/tokenModal.vue';
+
+	// Icons
 	import Plus from '@/assets/icons/plus.vue'
 	import Home from '@/assets/icons/home.vue'
 	import UserAdd from '@/assets/icons/userAdd.vue';
@@ -56,6 +69,8 @@
 
 	export default{
 		components : {
+			// components
+			TokenModal,
 			// icons
 			Plus, Home, UserAdd, UserGroup, LogOut, Cog, ShieldCheck
 		},
