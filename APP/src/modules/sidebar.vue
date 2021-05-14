@@ -55,6 +55,8 @@
 
 <script type="text/javascript">
 	
+	//import axios from 'axios';
+
 	// Components
 	import TokenModal from '@/modules/tokenModal.vue';
 
@@ -94,6 +96,9 @@
 			logOut : function(){
 				alert("Logging out!");
 			}
+		},
+		created(){
+			//this.$axios.get("ger");
 		}
 	}
 </script>

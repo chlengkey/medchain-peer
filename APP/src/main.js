@@ -1,8 +1,8 @@
+import Vue from 'vue'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './assets/index.css'
-import Axios from 'axios'
+import axios from 'axios'
 
-Vue.prototype.$http = Axios;
-createApp(App).use(router).mount('#app')
+const app = createApp(App).use(router, axios).mount('#app')
