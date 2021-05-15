@@ -1,8 +1,13 @@
 <template>
 	<Modal ref="modal">
 		<template v-slot:content>
-			<p class="text-lg font-bold">Masukan Token</p>
-			<p class="text-sm text-gray-500">Silahkan memasukan token pemeriksaan</p>
+			<p class="flex">
+				<Key class="mr-2 mt-1" width=5 height=5 />
+				<div >
+					<p class="text-lg font-bold mt-0">Masukan Token</p>
+					<p class="text-sm text-gray-500">Silahkan memasukan token pemeriksaan</p>
+				</div>
+			</p>
 			<Text class="mt-4 mb-2" @input="token = $event.target.value" placeholder="Nomor Token" />
 			<p class="text-xs" :class="footer.class"><InformationCircle/> {{footer.text}}</p>
 		</template>
@@ -31,9 +36,10 @@
 	// Icons
 	import InformationCircle from '@/assets/icons/informationCircle.vue'
 	import Refresh from '@/assets/icons/refresh.vue'
+	import Key from '@/assets/icons/key.vue'
 
 	export default{
-		components : {Text, Modal, InformationCircle, Refresh},
+		components : {Text, Modal, InformationCircle, Key, Refresh},
 		data(){
 			return{
 				animateSpinIcon : false,
@@ -53,12 +59,9 @@
 			inspect(){
 				const app = this;
 				if (!app.tokenFormatValid()) {return}
-
+				app.animateSpinIcon = true;
 				app.changeFooter('text-yellow-400','Mengecek Token');
-				/*this.$refs.modal.closeModal();
-				setTimeout(function(){
-					app.$router.replace("/pasien/periksa/29991");
-				},500);*/
+				
 				setTimeout(function(){
 					app.changeFooter('text-red-600', "Token tidak valid");
 					app.animateSpinIcon = false;
