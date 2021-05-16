@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="fixed" style="z-index:99;top:0">
 		<transition name="fade" mode="in-out">
 			<div class="backdrop z-50" @click="closeModal()" v-show="modalActive"></div>
 		</transition>
@@ -27,8 +27,8 @@
 
 <script type="text/javascript">
 
-	export default{
 
+	export default{
 		data(){
 			return{
 				modalActive : false
@@ -36,7 +36,7 @@
 		},
 		methods : {
 			openModal(){ this.modalActive = true},
-			closeModal : function(){ this.modalActive = false}
+			closeModal : function(){alert("tes"); this.modalActive = false}
 		}
 	}
 </script>

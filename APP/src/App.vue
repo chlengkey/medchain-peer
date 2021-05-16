@@ -2,16 +2,20 @@
 
   <div class="flex">
     <Sidebar/>
-    URL : {{BASE_URL}}
-    <router-view/>
+    <div class="w-full">
+      <Header />
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
 import Sidebar from '@/modules/sidebar.vue';
+import Header from '@/modules/header.vue';
+
 export default {
   name: 'App',
-  components : {Sidebar},
+  components : {Sidebar, Header},
   data() {
     return {
       title: 'Medical Chain',

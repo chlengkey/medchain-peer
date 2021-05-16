@@ -10,13 +10,13 @@ const routes = [
   	component: Dashboard
   },
   {
-    path : '/pasien/daftar',
-    name : "DaftarPasien",
+    path : '/pasien',
+    name : "Daftar Pasien",
     component : DaftarPasien
   },
   {
     path : '/pasien/periksa/:token',
-    name : "PeriksaPasien",
+    name : "Periksa Pasien",
     component : PeriksaPasien
   }
 ]

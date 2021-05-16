@@ -1,4 +1,5 @@
 <template>
+	<form @submit.prevent="inspect()">
 	<Modal ref="modal">
 		<template v-slot:content>
 			<p class="flex">
@@ -8,18 +9,18 @@
 					<p class="text-sm text-gray-500">Silahkan memasukan token pemeriksaan</p>
 				</div>
 			</p>
-			<Text class="mt-4 mb-2" @input="token = $event.target.value" placeholder="Nomor Token" />
+			<Text class="mt-4 mb-2" :value="token" @input="token = $event.target.value" placeholder="Nomor Token"/>
 			<p class="text-xs" :class="footer.class"><InformationCircle/> {{footer.text}}</p>
 		</template>
 		<template v-slot:button>
-			<button @click="inspect()" class="orange-button col-span-2 ml-2">
+			<button class="orange-button col-span-2 ml-2">
 				<transition name="fade" mode="out-in">
 					<Refresh class="animate-spin mr-1 -mt-1" v-show="animateSpinIcon"/>
 				</transition>
 				<span>Periksa</span>
 			</button>
 		</template>
-	</Modal>
+	</Modal></form>
 </template>
 
 <script type="text/javascript">
@@ -28,6 +29,9 @@
 	*  Bertugas untuk memeriksa jika token yang diberikan adalah valid atau tidak
 	*  [VALID] diarahkan ke url /pasien/periksa/{nomor_token}
 	*/
+
+	// API
+	const axios = require('axios');
 
 	// Components
 	import Modal from '@/components/Modal.vue';
@@ -50,6 +54,11 @@
 				},
 			}
 		},
+		computed:{
+			defaultURL : function(){
+				return process.env.VUE_APP_API + "/token/check/" + this.token;
+			}
+		},
 		methods : {
 			
 			open(){
@@ -62,10 +71,25 @@
 				app.animateSpinIcon = true;
 				app.changeFooter('text-yellow-400','Mengecek Token');
 				
-				setTimeout(function(){
-					app.changeFooter('text-red-600', "Token tidak valid");
-					app.animateSpinIcon = false;
-				},1000)
+				axios.get(app.defaultURL)
+					 .then(response => {
+					 	setTimeout(function(){
+					 		let tokenTemporary  = app.token;
+					 		app.token = "";
+					 		app.animateSpinIcon = false;
+
+					 		if(response.data.valid){
+					 			app.changeFooter('text-green-600', "Token valid");
+					 			app.$router.replace("/pasien/periksa/" + tokenTemporary);
+					 			setTimeout(function(){
+					 				app.changeFooter('text-gray-400','Pelajari token lebih lanjut disini');
+					 				app.$refs.modal.closeModal();
+					 			},500)
+					 			return;
+					 		}
+							app.changeFooter('text-red-600', "Token tidak valid");
+						},1000)
+					 })
 			},
 
 			tokenFormatValid(){

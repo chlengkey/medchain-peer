@@ -10,17 +10,6 @@
 				<p class="font-extrabold text-white text-lg">Halo, {{user.username}}</p>
 				<p class="text-xs text-white mb-2 mt-0.5">{{user.medical_service_level}} {{user.medical_service_name}}</p>
 				<p class="text-sm text-white mt-0.5">Blockchain based medical service</p>
-				<div class="flex mt-4">
-					<p v-if="blockchainValidity" class="font-semibold text-sm green-button"
-					   title="Blockchain anda valid">
-						<ShieldCheck class="-mt-0.5 mr-1 -ml-1" /> Valid</p>
-					<p v-else class="font-semibold text-sm red-button"
-					   title="Blockchain anda tidak valid">
-						<ShieldCheck class="-mt-0.5 mr-1 -ml-1" /> Error</p>
-					<p class="red-secondary-button text-sm ml-1" @click="logOut()">
-						<LogOut class="-mt-0.5 mr-1" />Keluar</p>	
-				</div>
-				
 			</div>
 			
 			<!-- divider -->
@@ -33,7 +22,7 @@
 					<p class="nav-item"><Home class="-mt-0.5 mr-2"/>Dashboard</p>
 				</router-link>
 				
-				<router-link to="/rer">
+				<router-link to="/pasien">
 					<p class="nav-item"><UserGroup class="-mt-0.5 mr-2"/>Daftar Pasien</p>
 				</router-link>
 

@@ -1,28 +1,53 @@
 <template>
-	<div @click="tokenOpen()"
+	<!--<div @click="tokenOpen()"-->
+	<div @click="showModal()"
 		class="bg-orange-500 h-full rounded-md p-3 text-white text-xs font-bold" style="font-family:'Inter'">
 		<ion-icon class="mr-1" :icon="timer" />
-		<ion-icon :icon="lockClosed" /><br/>Buat Token<br/><span class="font-normal">Membantu pemeriksaan lebih aman</span>
+		<ion-icon :icon="lockClosed" />
+		<br/>Buat Token<br/>
+		<span class="font-normal">Membantu pemeriksaan lebih aman</span>
     </div>
 </template>
 
 <script type="text/javascript">
 
-import { timer, lockClosed } from 'ionicons/icons';
-import {alertController} from '@ionic/vue';
+	// Modules
+	import TokenModal from '@/modules/TokenModal.vue'
+	import { modalController, alertController } from '@ionic/vue';
 
+	// Components and Icons
+	import { timer, lockClosed } from 'ionicons/icons';
+
+	// API
+	import {VUE_APP_API} from '@/function.js'
+	const axios = require('axios');
+	
 	export default{
 		data(){
 			return{
+				clinicData : [
+					{
+						klinikNama : "Puskesmas Tomohon",
+						klinikAlamat : "Jl. Tomohon",
+						klinikId     : "public_key"
+					}
+				],
 				lockClosed,
 				timer,
 				tokenLocal  : "",
-				expiredTime : 9999999999999
+				expiredTime : 9999999999999,
 			}
 		},
 		props : ['token'],
 		methods : {
-
+			
+			showModal : async function(){
+				const modal = await modalController.create({
+					component: TokenModal,
+				})
+				await modal.present()
+			},
+			
 			getTimestamp : function() {
 				const timestamp = new Date();
 				const timestampNow = timestamp.getTime();
@@ -34,10 +59,18 @@ import {alertController} from '@ionic/vue';
 			},
 
 			generateToken : function(){
-				const min = 10000;
-				const max = 99999;
-				const token = Math.floor(Math.random() * (max-min)) + min;
-				return token
+
+				// PAYLOAD
+				// enkripsi private_key dengan menggunakan public_key fasilitas kesehatan
+				axios.get(VUE_APP_API + "/token/generate")
+					.then(response => {
+						console.log(response);
+					})
+
+				//const min = 10000;
+				//const max = 99999;
+				//const token = Math.floor(Math.random() * (max-min)) + min;
+				//return token
 			},
 			
 			getToken : function(){
@@ -79,11 +112,16 @@ import {alertController} from '@ionic/vue';
 					header    : 'Buat Token',
 					subHeader : "Anda Setuju?",
 					message   : "<p class='text-sm'>Dengan membuat token anda setuju memberikan data rekam medis anda</p>",
-					buttons   : ['Batal',{text:'Setuju', handler : () => {
-						app.tokenLocal  = app.generateToken();
-						app.expiredTime = app.getTimestamp() + 1800000;
-						app.tokenMain();
-					}}]
+					buttons   : ['Batal',
+						{
+							text:'Setuju', 
+							handler : () => {
+								app.tokenLocal  = app.generateToken();
+								app.expiredTime = app.getTimestamp() + 1800000;
+								//app.tokenMain();
+							}
+						}
+					]
 				});
 				await alert.present();
 			},
