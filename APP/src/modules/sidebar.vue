@@ -16,9 +16,10 @@
 			<hr class="my-5 border-white opacity-30" />
 
 			<div class="w-full px-5 text-sm relative">
-				<p class="yellow-glow-button w-full" @click="$refs.tokenModal.open()"><Plus class="mr-1" />Pemeriksaan Baru</p>
 
-				<router-link to="/">
+				<p class="yellow-glow-button w-full" @click="$refs.tokenModal.open()"><Plus class="mr-1" />Pemeriksaan Baru</p>
+				
+				<router-link to="/" class="flex">
 					<p class="nav-item"><Home class="-mt-0.5 mr-2"/>Dashboard</p>
 				</router-link>
 				

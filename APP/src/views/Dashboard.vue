@@ -9,7 +9,7 @@
 	
 	import TokenModal from '@/modules/tokenModal.vue';
 	const axios = require('axios');
-
+	
 	export default{
 		components : {TokenModal},
 		created(){
@@ -17,6 +17,5 @@
 				console.log(response);
 			})
 		}
-		
 	}
 </script>

@@ -4,6 +4,7 @@ from flask_restful import Api, Resource
 from flask_cors import CORS
 from blockchain import Blockchain, Block
 from controller.token import Token, Generator
+from experiment.keyTest import Cryp
 
 #@app.before_request
 #def limit_remote_addr():
@@ -27,6 +28,9 @@ cors = CORS(app, resources = {r"/*" : { "origin" : "*" }})
 # Tokenization
 api.add_resource(Token, "/token/check/<string:id>", endpoint="tokenGetter");
 api.add_resource(Generator, "/token/generate", endpoint="tokenGenerate");
+
+# Crypto Test
+api.add_resource(Cryp, "/crypto/<string:id>")
 
 @app.route('/generate')
 def hello():
