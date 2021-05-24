@@ -13,7 +13,7 @@
 
 	// Modules
 	import TokenModal from '@/modules/TokenModal.vue'
-	import { modalController, alertController } from '@ionic/vue';
+	import { modalController, alertController, IonIcon } from '@ionic/vue';
 
 	// Components and Icons
 	import { timer, lockClosed } from 'ionicons/icons';
@@ -23,6 +23,7 @@
 	const axios = require('axios');
 	
 	export default{
+		components : {IonIcon},
 		data(){
 			return{
 				clinicData : [

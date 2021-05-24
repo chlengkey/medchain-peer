@@ -95,9 +95,17 @@ import Tokenization from '@/components/Tokenization.vue';
 
 export default  {
   name: 'Tab1',
+  components: {IonHeader, IonToolbar, IonTitle, IonContent, IonPage, Tokenization},
   data(){
     return{
-      
+      user : 'tes',
+      profile : {
+        name : "Chrisdityra Lengkey"
+      },
+      blockchain : {
+        valid : 1
+      },
+
       // ionicons
       medical,
       close,
@@ -106,32 +114,32 @@ export default  {
       book,
       timer,
 
-      profile : {
-        name : "Chrisdityra Lengkey"
-      },
-
-      blockchain : {
-        valid : 1
-      },
-
       record  : [
-        /*{
+        {
           "hash" : "98913n1jnjbugdsug2323",
           "tanggal" : "19-05-2021",
           "pasien_nama" : "Chrisdityra Lengkey",
           "pasien_keluhan" : "Sakit pinggang dan  perut"
-        }*/
+        }
       ],
       values : "2008-09-02"
     }
   },
-  methods :  {
-    
-  },
-  created(){
-   //QRCode.toCanvas(canvas, 'sample text');
+  methods : {
+    tes : function(){
+      const app = this;
+      console.log(this.user);
+    }
   },
 
-  components: {IonHeader, IonToolbar, IonTitle, IonContent, IonPage, Tokenization}
+  created(){
+    this.tes();
+    /*let loginCredential = localStorage.getItem('logged');
+    if (loginCredential) {
+      let data = localStorage.getItem('47deb444a873b5bb877c35196a56c086'); 
+      this.profile = "user";
+    }
+    this.profile = "user";*/
+  },
 }
 </script>

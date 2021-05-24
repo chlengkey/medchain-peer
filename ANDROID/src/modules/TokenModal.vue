@@ -32,7 +32,7 @@
 	const axios = require('axios');
 
 	// UI
-	import { modalController, alertController, IonProgressBar} from '@ionic/vue';
+	import { modalController, alertController, IonProgressBar, IonContent} from '@ionic/vue';
 
 	// Settings
 	import { crypto } from '@/function.js';
@@ -40,6 +40,7 @@
 	
 
 	export default{
+		components : {IonContent, IonProgressBar},
 		name : "Generate Token",
 		data(){
 			return{
@@ -70,7 +71,7 @@
 				const app = this;
 				this.showProgressBar = true;
 				//let privateData = cryptoFunc.encryptPrivateKeyUsingPublic(clinic.clinicId);
-				let privateData = cryptoFunc.encryptUsingPublicKey(clinic.clinicId, "Sayang oylek");
+				let privateData = cryptoFunc.encryptUsingPublicKey(clinic.clinicId, "riwayat pasien");
 				let data = {
 					payload : privateData
 				};

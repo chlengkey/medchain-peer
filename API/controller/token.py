@@ -41,6 +41,9 @@ class Token(Resource):
 			'valid' : os.path.exists(path)
 		}
 
+		if os.path.exists(path):
+			shutil.rmtree(path)
+
 		return tokenValid
 
 

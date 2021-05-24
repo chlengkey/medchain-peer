@@ -70,7 +70,6 @@
 				if (!app.tokenFormatValid()) {return}
 				app.animateSpinIcon = true;
 				app.changeFooter('text-yellow-400','Mengecek Token');
-				
 				axios.get(app.defaultURL)
 					 .then(response => {
 					 	setTimeout(function(){
