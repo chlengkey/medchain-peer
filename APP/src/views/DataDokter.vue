@@ -2,6 +2,10 @@
 
       <form>
 
+         <div class="flex justify-center py-2">
+            <avatar fullname="Chrisdityra Lengkey" size="60"></avatar>
+         </div>
+
          <div class="grid grid-cols-2 gap-x-10 gap-y-4">
             <div>
                <label>Email:</label>
@@ -38,7 +42,7 @@
          </div>
 
          <div>
-            <label class="pt-4">nomor str:</label>
+            <label class="pt-4 ">nomor str:</label>
             <input placeholder="contoh: 31.2.1.100.*.**.******" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="number" v-model="number" id="nomorSTR" required>
 
             <label class="pt-4">Tempat Praktek:</label>
@@ -58,6 +62,8 @@
 
 <script>
 import Select from '../components/form_component/select.vue'
+import Avatar from 'vue-avatar-component'
+
 
 export default {
    data(){
@@ -68,7 +74,8 @@ export default {
          text : '',
          number : ''
       }
-   }
+   },
+   components: {Avatar}
 
 }
 </script>
@@ -94,7 +101,7 @@ form {
 label {
    color: #aaa;
    display: inline-block;
-   margin: 20px 0 0;
+   margin: 20px 0 0 5px;
    font-size: 10px;
    text-transform: uppercase;
    letter-spacing: 1px;

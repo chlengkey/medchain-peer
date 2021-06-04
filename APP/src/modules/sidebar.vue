@@ -7,9 +7,8 @@
 			
 			<div class="px-4 mt-8">
 				<img src="@/assets/logo.png" class="w-8 mb-5">
-				<p class="font-extrabold text-white text-lg">Halo, {{user.username}}</p>
-				<p class="text-xs text-white mb-2 mt-0.5">{{user.medical_service_level}} {{user.medical_service_name}}</p>
-				<p class="text-sm text-white mt-0.5">Blockchain based medical service</p>
+				<p class="font-extrabold text-white text-lg">Halo, {{klinik.dokter}}</p>
+				<p class="text-xs text-white mb-2 mt-0.5">{{klinik.medical_service_level}} {{klinik.medical_service_name}}</p>
 			</div>
 			
 			<!-- divider -->
@@ -24,7 +23,7 @@
 				</router-link>
 				
 				<router-link to="/pasien">
-					<p class="nav-item"><UserGroup class="-mt-0.5 mr-2"/>Daftar Pasien</p>
+					<p class="nav-item"><UserGroup class="-mt-0.5 mr-2"/>Data Pasien</p>
 				</router-link>
 
 				<router-link to="/pasien/dataDokter">
@@ -80,8 +79,8 @@
 				blockchainValidity : false,
 			
 				// mutable
-				user : {
-					username     : "Chrisdityra",
+				klinik : {
+					dokter     : "Cedric",
 					medical_service_name  : "TOMOHON",
 					medical_service_level : "KLINIK"
 				}

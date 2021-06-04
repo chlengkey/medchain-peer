@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Dashboard from '@/views/Dashboard.vue'
-import DaftarPasien from '@/views/DaftarPasien.vue'
+import DataPasien from '@/views/DataPasien.vue'
 import DataDokter from '@/views/DataDokter.vue'
 import PeriksaPasien from '@/views/PeriksaPasien.vue'
 import Pengaturan from '@/views/Pengaturan.vue'
@@ -13,8 +13,8 @@ const routes = [
   },
   {
     path : '/pasien',
-    name : "Daftar Pasien",
-    component : DaftarPasien
+    name : "Data Pasien",
+    component : DataPasien
   },
   {
     path : '/pasien/periksa/:token',
