@@ -12,17 +12,17 @@ const routes = [
   	component: Dashboard
   },
   {
-    path : '/pasien',
+    path : '/pasien/:token',
     name : "Data Pasien",
     component : DataPasien
   },
   {
-    path : '/pasien/periksa/:token',
+    path : '/pasien/periksa/tambah/:token',
     name : "Periksa Pasien",
     component : PeriksaPasien
   },
   {
-    path : '/pasien/dataDokter',
+    path : '/dataDokter',
     name : "Data Dokter",
     component : DataDokter
   },

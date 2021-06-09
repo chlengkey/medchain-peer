@@ -2,8 +2,12 @@
 
       <form>
 
-         <div class="flex justify-center py-2">
-            <avatar fullname="Chrisdityra Lengkey" size="60"></avatar>
+         <div class="top h-55 w-full bg-blue-600 overflow-hidden rounded-lg relative" >
+            <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white p-3">
+               <img src="https://images.unsplash.com/photo-1603030431751-f3109cd8d53b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="h-24 w-24 object-cover rounded-full">
+               <h1 class="text-xl font-semibold pt-2">Cleyra Lovelace</h1>
+               <h4 class="text-sm font-semibold">Joined Since '19</h4>
+            </div>
          </div>
 
          <div class="grid grid-cols-2 gap-x-10 gap-y-4">

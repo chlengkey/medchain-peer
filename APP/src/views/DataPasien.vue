@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <div class="px-5 py-4 mb-2">
+        <div class="px-5 py-4">
             <table class="table-auto border-seperate border border-black-800">
                 <thead>
                     <tr class="bg-blue-200">
@@ -115,6 +115,12 @@
                 </tbody>
             </table>
         </div>
+        
+        <div>
+            <router-link to="/pasien/periksa/tambah/:token">
+            <button class="p-2 ml-3 mb-3 bg-blue-600 rounded-lg text-white"><Plus/>Tambah</button>
+            </router-link>
+        </div>
 
     </div>
 
@@ -128,9 +134,10 @@
 <script>
   import Avatar from 'vue-avatar-component'
   import Folder from '@/assets/icons/folder.vue'
+  import Plus from '@/assets/icons/plus.vue'
 
   export default {
-    components: { Avatar, Folder },
+    components: { Avatar, Folder, Plus },
 
     data(){
         return{
