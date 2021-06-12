@@ -4,6 +4,7 @@ import DataPasien from '@/views/DataPasien.vue'
 import DataDokter from '@/views/DataDokter.vue'
 import PeriksaPasien from '@/views/PeriksaPasien.vue'
 import Pengaturan from '@/views/Pengaturan.vue'
+import Login from '@/account/login.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path : '/pengaturan',
     name : "Pengaturan",
     component : Pengaturan
+  },
+  {
+    path : '/login',
+    name : "Login",
+    component : Login
   }
 ]
 

@@ -1,7 +1,7 @@
 <template>
 
 	<div class="px-10 relative shadow">
-		<div class="absolute center-v right-10 flex">
+		<div class=" absolute center-v right-10 flex">
 
 			<a href="/dataDokter" class="p-2 flex text-blue-400 transition-colors duration-200 rounded-full bg-blue-50 hover:text-blue-600 hover:bg-blue-100 dark:hover:text-light dark:hover:bg-blue-700 dark:bg-dark focus:outline-none focus:bg-blue-100 dark:focus:bg-blue-700 focus:ring-blue-800">
 				<Notification width="6" height="6"/>

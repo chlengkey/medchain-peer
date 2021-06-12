@@ -5,10 +5,8 @@
 		<div class="md:w-56"></div>
 		<div class=" fixed w-56 bg-blue-500 h-full shadow">
 			
-			<div class="px-4 mt-8">
+			<div class="px-4 mt-5">
 				<img src="@/assets/logo.png" class="w-8 mb-5">
-				<p class="font-extrabold text-white text-lg">Halo, {{klinik.dokter}}</p>
-				<p class="text-xs text-white mb-2 mt-0.5">{{klinik.medical_service_level}} {{klinik.medical_service_name}}</p>
 			</div>
 			
 			<!-- divider -->
