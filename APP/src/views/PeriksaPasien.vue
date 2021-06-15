@@ -1,38 +1,40 @@
 <template>
 	<div>
-		<div class="flex items-center justify-center">
-      	<div class="grid bg-blue-500 rounded-lg shadow-xl md:w-2/4 lg:w-2/4 mt-8">
+        
+		<!-- Data Diri Pasien -->
+    <div class="flex h-36 mx-2 my-5 items-center justify-center">
+        <div class="grid bg-blue-500 rounded-lg shadow-xl mt-8 md:w-2/4 lg:w-2/4">
 
-            <div class="flex p-6 mt-1 items-center">
+            <div class="flex p-3 mx-3 items-center">
 
                 <!-- Foto Profil -->
                 <avatar fullname="Chrisdityra Lengkey" size="60"></avatar>
 
                 <!-- Nama dan Usia -->
                 <div>
-                    <p class="mx-5 my-2 text-sm leading-4 text-2xl font-extrabold text-white">{{user.username}}</p>
-                    <p class="mx-5 my-2 text-sm leading-4 text-xl font-medium font-extrabold text-white">{{user.umur}}</p>
+                    <h2 class="text-2xl text-white px-2 font-semibold">{{user.username}}</h2>
+                    <h1 class="text-xl text-white font-bold px-2">{{user.umur}}</h1>
                 </div>
                 
             </div>
 
             <!-- Biodata Pasien -->
             <div>
-                <div class="grid grid-cols-3">
+                <div class="grid grid-cols-3 mx-6 my-3">
 
                     <div>
-                        <p class="mx-7 text-sm leading-4 text-base font-bold text-white">Berat Badan</p>
-                        <p class="mx-7 my-2 pb-3 text-sm leading-4 text-sm text-white">{{user.berat_badan}}</p>
+                        <p class="mb-1 text-sm leading-4 text-base font-bold text-white">Berat Badan</p>
+                        <p class="text-sm leading-4 text-sm text-white">{{user.berat_badan}}</p>
                     </div>
 
                     <div>
-                        <p class="text-sm leading-4 text-base font-bold text-white">Tinggi Badan</p>
-                        <p class="my-2 text-sm leading-4 text-sm text-white">{{user.tinggi_badan}}</p>
+                        <p class="mb-1 text-sm leading-4 text-base font-bold text-white">Tinggi Badan</p>
+                        <p class="text-sm leading-4 text-sm text-white">{{user.tinggi_badan}}</p>
                     </div>
 
                     <div>
-                        <p class="text-sm leading-4 text-base font-bold text-white">Golongan Darah</p>
-                        <p class="my-2 text-sm leading-4 text-sm text-white">{{user.golongan_darah}}</p>
+                        <p class="mb-1 text-sm leading-4 text-base font-bold text-white">Golongan Darah</p>
+                        <p class="text-sm leading-4 text-sm text-white">{{user.golongan_darah}}</p>
                     </div>
 
                 </div>
@@ -41,28 +43,28 @@
         </div>
 
         <!-- Penyakit dan Alergi Pasien -->
-        <div class="grid grid-rows-2 bg-white rounded-lg shadow-xl mt-8">
-            <div class="flex p-4 items-center">
+        <div class="grid grid-rows-2 px-5 bg-white h-36 rounded-lg shadow-xl mt-8">
+            <div class="flex p-5 items-center">
 
-                <div>
-                    <p class="mx-3 text-sm leading-4 text-base font-bold text-gray-700">Penyakit</p>
-                    <p class="mx-3 my-2 text-sm leading-4 text-sm text-gray-700">{{user.penyakit}}</p>
+                <div class="mx-3">
+                    <p class="text-sm leading-4 text-base font-bold text-gray-700">Penyakit</p>
+                    <p class="mt-2 text-sm leading-4 text-sm text-gray-700">{{user.penyakit}}</p>
                 </div>
         
             </div>
 
-            <div class="flex p-4 items-center grid grid-cols-2 gap-10">
+            <div class="px-5 mt-1 flex mx-3 items-center grid grid-cols-2 gap-10">
 
-                <div>
-                    <p class="mx-3 pt-2 text-sm leading-4 text-base font-bold text-gray-700">Alergi Obat</p>
-                    <p class="mx-3 my-2 text-sm leading-4 text-sm text-gray-700">{{user.alergi_obat}}</p>
+                <div class="">
+                    <p class="text-sm leading-4 text-base font-bold text-gray-700">Alergi Obat</p>
+                    <p class="mt-2 text-sm leading-4 text-sm text-gray-700">{{user.alergi_obat}}</p>
                 </div>
 
                 <div>
-                    <p class="mx-3 pt-2 text-sm leading-4 text-base font-bold text-gray-700">Alergi Makanan</p>
-                    <p class="mx-3 my-2 text-sm leading-4 text-sm text-gray-700">{{user.alergi_makanan}}</p>
+                    <p class="text-sm leading-4 text-base font-bold text-gray-700">Alergi Makanan</p>
+                    <p class="mt-2 text-sm leading-4 text-sm text-gray-700">{{user.alergi_makanan}}</p>
                 </div>
-        
+                
             </div>
             
         </div>
@@ -121,7 +123,7 @@ export default {
             tinggi_badan : "169 cm",
             golongan_darah : "A+",
             penyakit : "Amandel dan Maag",
-            alergi_obat : "Asam Sulfat",
+            alergi_obat : "Asam Mefenamat",
             alergi_makanan : "Kacang Tanah"
          }
       }

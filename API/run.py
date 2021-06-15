@@ -1,4 +1,4 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+#from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, request, jsonify, abort
 from flask_restful import Api, Resource
 from flask_cors import CORS
