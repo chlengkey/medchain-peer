@@ -7,12 +7,13 @@
 
 				<!-- Content Header -->
 				<div class="grid grid-cols-6 mb-5">
-					<img src="../assets/logo.png" class="w-32 mt-2 align-bottom col-span-5">
-					<div class="relative">
-						<div class="absolute right-0">
-							<div class=" w-10 h-10 bg-black rounded-fulltext-transparent">t</div>
-						</div>
-					</div>
+				<img src="../assets/logo.png" class="w-32 mt-2 align-bottom col-span-5">
+					
+					<!-- Account -->
+					<ion-avatar class="absolute right-0">
+							<img class="w-10 ahsolute right-0" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+					</ion-avatar>
+
 				</div>
 				<div class="my-16" style="font-family:Inter">
 					<p class="text-xl text-center font-semibold">Hi, {{user.firstname}}</p>
@@ -37,15 +38,19 @@
 					<br/>Medis<br/><span class="font-normal">Lihat seluruh blok rekam medis anda</span>
 				</div>
 				<Tokenization ref="tokenization"></Tokenization>
+
+						<!-- BLOCKCHAIN CHECKED
 				<div :class="{'bg-green-500':blockchain.valid, 'bg-red-500': !blockchain.valid}" 
-             		 class="h-full rounded-md p-3 text-white text-xs font-bold" style="font-family:'Inter'">
-             		 <ion-icon v-if="blockchain.valid" class="mr-1 text-xl" :icon="shieldCheckmark" />
-             		 <ion-icon v-if="!blockchain.valid" class="mr-1 text-xl" :icon="close" />
-             		 <span>Blockchain </span> 
-             		 <span v-if="blockchain.valid">Valid</span>
-             		 <span v-else>Tidak Valid</span>
-             	</div>
-            </div>
+            class="h-full rounded-md p-3 text-white text-xs font-bold" style="font-family:'Inter'">
+            <ion-icon v-if="blockchain.valid" class="mr-1 text-xl" :icon="shieldCheckmark" />
+            <ion-icon v-if="!blockchain.valid" class="mr-1 text-xl" :icon="close" />
+            <span>Blockchain </span> 
+            <span v-if="blockchain.valid">Valid</span>
+            <span v-else>Tidak Valid</span>
+            </div> 
+						BLOCKCHAIN CHECKED -->
+
+         </div>
             <hr class="border-4 my-4" />
             
 		</ion-content>
@@ -54,13 +59,13 @@
 
 <script type="text/javascript">
 	
-	import { IonPage, IonContent, IonIcon} from '@ionic/vue';
+	import { IonAvatar, IonPage, IonContent, IonIcon} from '@ionic/vue';
 	import { medical, timer, book, shieldCheckmark, lockClosed, close} from 'ionicons/icons';
 	import Tokenization from '@/components/Tokenization.vue';
 
 
 	export default{
-		components : {IonPage, IonContent, IonIcon, Tokenization},
+		components : {IonAvatar, IonPage, IonContent, IonIcon, Tokenization},
 		data(){
 			return{
 				book,shieldCheckmark,

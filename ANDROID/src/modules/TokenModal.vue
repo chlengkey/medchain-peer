@@ -11,18 +11,17 @@
 			<ion-progress-bar v-if="showProgressBar" type="indeterminate"></ion-progress-bar>
 		</div>
 		<div class="h-20"></div>
+		
+		<div class="mx-4 mt-4">
+			<div	class="border-b border-gray-400 pb-3 mb-5"
+				 	v-for="clinic in clinics" :key="clinic.clinicId"
+		    	   @click="proceedToMakeToken(clinic)">
+				<p class="font-bold text-sm">{{clinic.clinicName}}</p>
+				<p class="text-sm mt-0 text-gray-600">{{clinic.clinicAddress}}</p>
+		   </div>
+		</div>
 
-  	</div>
-
-		<ion-content class="ion-padding">
-			<div>
-		    	<div class="border-b border-gray-400 pb-3 mb-3" v-for="clinic in clinics"
-		    	     @click="proceedToMakeToken(clinic)">
-		    		<p class="font-bold text-sm">{{clinic.clinicName}}</p>
-		    		<p class="text-sm mt-0 text-gray-600">{{clinic.clinicAddress}}</p>
-		    	</div>
-    		</div>
-  		</ion-content>
+	</div>
 </template>
 
 <script type="text/javascript">
@@ -49,7 +48,7 @@
 					{
 						clinicName    : "Puskesmas Tomohon",
 						clinicAddress : "Jl. Raya Manado Tomohon",
-						clinicHost    : "http://192.168.1.10",
+						clinicHost    : "http://192.168.1.13",
 						clinicId      : "b'-----BEGIN PUBLIC KEY-----\nMIICSDANBgkqhkiG9w0BAQEFAAOCAjUAMIICMAKCAicAtiONJExI/bu+GhPMY8Xl\nYdN1FtGuBgoxuCEHeAZeJ1TCllWcTMswBS5aooIFYEMgbgtA4Od8Ru5Zk9ZHbhSA\n1pKkiK/KuIoTSNMcxcTkC6TKjfNNGYW3UcXgBc624NIPqKZfwAueYsUYx4jIixDU\nULinGzc+SfIcBRnoCVWt4bcF/0iozOhe8BmQQbmktJo4dbdDLYfWN/x6gsKXyaPG\nRbZQ4+LjT3b+qIT65Y44w7lcXQ0OfzbgHYGzdOrNuNqgEBrCfkR4JZsGedPHPSra\nyJT4BGzhTbkBTzNWzhalM/s8EmWJlI/Glg6+pNxcInJUODrZkXqVCupP5Qgfe4HI\nZ1rrpLxdI6/G+IelGoceUoweBqYzjIkjVvZm3sq781i9CpyHzxcnTTu5XJsBrHgc\nSyDzVzIifCNB+yV2J7DT0gTNgBHpooxK8cAilaJYkDWf+AhIla6n5SqrMsg1Ax6Q\nLUAwEE5X9dDQVcT93tsOtHoPhZsDj6ewkrO999UrC3ZIDjTLsfIgNsUj6zsCBfIo\nV69nQXGyuRHf3d0tVM2rgt8FUbvFm2ivM1awf0nNr7LUqRUOyGjgHqgFlnj5g73L\nV+cYzwq0sTiGHFr0y5anRMpZTrgPHZvU7Ag+E+iB2QfmD8QvP476uYSOhw72FZCv\nhIZjowVrwl4ArM17fUtlQLEgp60XvRiScCS7wqxb6h6Xc+GQIJkUtDKT84iPoD8F\nb1dK0pjKuQIDAQAB\n-----END PUBLIC KEY-----'" 
 					},
 					{
@@ -70,17 +69,20 @@
 			proceedToMakeToken : function(clinic){
 				const app = this;
 				this.showProgressBar = true;
-				//let privateData = cryptoFunc.encryptPrivateKeyUsingPublic(clinic.clinicId);
-				let privateData = cryptoFunc.encryptUsingPublicKey(clinic.clinicId, "riwayat pasien");
+				let privateData = cryptoFunc.encryptPrivateKeyUsingPublic(clinic.clinicId);				
+				//let privateData = cryptoFunc.encryptUsingPublicKey(clinic.clinicId, "riwayat pasien");
 				let data = {
 					payload : privateData
 				};
 				axios.post(clinic.clinicHost + ":5000/token/generate", data)
 				     .then(response => {
-				     	console.log(response.data);
-				     	alert("Token berhasil digenerate : " + response.data.token);
-						app.showProgressBar = false;
+						  console.log(response.data);
+						  alert("Token berhasil digenerate : " + response.data.token);
+						  app.showProgressBar = false;
 				     })
+					  .catch(error => {
+						  console.log(error);
+					  })
 			}
 		},
 		created(){

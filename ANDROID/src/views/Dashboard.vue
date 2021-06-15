@@ -18,7 +18,9 @@
           <img src="../assets/logo.png" class="w-32 mt-2 align-bottom col-span-5">
           <div class="relative">
             <div class="absolute right-0">
-              <div class=" w-10 h-10 bg-black rounded-fulltext-transparent">t</div>
+              <ion-avatar>
+                  
+              </ion-avatar>
             </div>
           </div>
         </div>
@@ -89,13 +91,13 @@
 </template>
 
 <script lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+import { IonAvatar, IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
 import { medical, timer, book, shieldCheckmark, lockClosed, close} from 'ionicons/icons';
-import Tokenization from '@/components/Tokenization.vue';
+import Tokenization from '../components/Tokenization.vue';
 
 export default  {
   name: 'Tab1',
-  components: {IonHeader, IonToolbar, IonTitle, IonContent, IonPage, Tokenization},
+  components: {IonAvatar, IonHeader, IonToolbar, IonTitle, IonContent, IonPage, Tokenization},
   data(){
     return{
       user : 'tes',

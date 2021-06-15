@@ -6,8 +6,10 @@ export class crypto {
 
   constructor(privateKey="", publicKey=""){
   	if(privateKey == "" && publicKey == ""){
-  		this.private = localStorage.getItem('private');
-    	this.public  = localStorage.getItem('public');
+      let status = localStorage.getItem('logged');
+      let localData = JSON.parse(localStorage.getItem(status));
+  		this.private = localData.privateKey;
+    	this.public  = localData.publicKey;
   	}
     this.cryptoFunc = new NodeRSA(this.private);
   }
