@@ -1,5 +1,4 @@
 from flask_restful import Resource,request
-from controller.medichainRSA import medichainRSA
 from ..models import Token
 import os
 
@@ -13,7 +12,6 @@ class Generator(Resource):
 	def post(self, encryptedPrivateKey="12345"):
 
 		data = request.get_json()
-		RSAInstance = medichainRSA()
 		
 		if 'payload' not in data:
 			return {"msg" : "Error!, payload tidak dapat ditemukan, anda harus menyertakan payload"}
@@ -21,7 +19,7 @@ class Generator(Resource):
 		try:
 
 			token = Token()
-
+			
 			# Menyetting agar path menuju ke /local/token/{nomor_token}
 			path_to_token = "{}/{}".format(self.DEFAULT_TOKEN_PATH, token.__dict__['token'])
 			path = os.path.join(os.getcwd(), path_to_token)

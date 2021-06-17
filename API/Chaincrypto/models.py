@@ -25,3 +25,9 @@ class Crypto:
 		self.__dict__ = json.loads(decoded)
 
 		return self
+
+	def get(self):
+		return self.__dict__
+
+	def toJson(self):
+		return json.dumps(self.__dict__)

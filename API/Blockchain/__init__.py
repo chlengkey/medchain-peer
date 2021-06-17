@@ -1,10 +1,20 @@
-from .components.BlockController import BlockController
+from .components.BlockInterface import BlockInterface
+from .components.MiningInterface import MiningInterface
 from Router import Router
 import os
 
 DEFAULT_MINED_BLOCK_PATH = "Blockchain/store/mined"
 DEFAULT_REJECT_BLOCK_PATH = "Blockchain/store/rejected"
 DEFAULT_PENDING_BLOCK_PATH = "Blockchain/store/pending"
+
+if not os.path.exists(DEFAULT_MINED_BLOCK_PATH):
+	os.mkdir(DEFAULT_MINED_BLOCK_PATH)
+
+if not os.path.exists(DEFAULT_REJECT_BLOCK_PATH):
+	os.mkdir(DEFAULT_REJECT_BLOCK_PATH)
+
+if not os.path.exists(DEFAULT_PENDING_BLOCK_PATH):
+	os.mkdir(DEFAULT_PENDING_BLOCK_PATH)
 
 router = Router()
 routes = [
@@ -13,7 +23,7 @@ routes = [
 		"children" : [
 			{
 				"path" : "create",
-				"component" : BlockController,
+				"component" : BlockInterface,
 				"endpoint" : "CreateBlock",
 				"payload" : {
 					"path" : DEFAULT_PENDING_BLOCK_PATH
@@ -21,28 +31,17 @@ routes = [
 			},
 			{
 				"path" : "<string:id>",
-				"component" : BlockController,
+				"component" : BlockInterface,
 				"endpoint" : "MinedBlock",
 				"payload" : {
 					'path' : DEFAULT_MINED_BLOCK_PATH
 				}
 			},
 			{
-				"path" : "rejected/<string:id>",
-				"component" : BlockController,
-				"endpoint" : "RejectedBlock",
-				"payload" : {
-					'path' : DEFAULT_REJECT_BLOCK_PATH
-				}
-			},
-			{
-				"path" : "pending/<string:id>",
-				"component" : BlockController,
-				"endpoint" : "PendingBlock",
-				"payload" : {
-					'path' : DEFAULT_PENDING_BLOCK_PATH
-				}
-			},
+				"path" : "mine",
+				"endpoint" : "BlockMining",
+				"component" : MiningInterface
+			}
 		]
 	}
 ]

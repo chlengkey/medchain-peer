@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #from apscheduler.schedulers.background import BackgroundScheduler
 # Import Flask Instance
 from flask import Flask, request, jsonify, abort
@@ -7,7 +9,7 @@ from flask_cors import CORS
 # Import Medical Chain Instance
 import Token
 import Blockchain
-from Chaincrypto import KeyBinding, Processor
+import Data
 from experiment.keyTest import Cryp
 
 """
@@ -29,7 +31,7 @@ api = Api(app)
 CORS(app)
 cors = CORS(app, resources = {r"/*" : { "origin" : "*" }})
 
-components = [Token, Blockchain]
+components = [Token, Blockchain, Data]
 
 for component in components:
     component.register(api)
