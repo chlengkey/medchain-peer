@@ -18,6 +18,7 @@ class Mining():
 			3. Membuat Block baru dengan hash dari block sebelumnya
 			4. Menghapus semua data di DEFAULT_PATH_TO_MINE
 		"""
+
 		# Mengambil data dari pending block
 		controller = Controller()
 		dataList = controller.list()
@@ -34,6 +35,7 @@ class Mining():
 		if valid:
 			isChainValid = chain.valid()
 			if isChainValid:
+
 				# Membuat Block baru dan melakukan mining
 				newBlock = chain.addBlock(dataList)
 

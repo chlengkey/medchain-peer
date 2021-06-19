@@ -3,6 +3,6 @@ from .Mining import Mining
 
 class MiningInterface(Resource):
 
-	def get(self):
+	def post(self):
 		mining = Mining()
 		return mining.start()

@@ -1,5 +1,7 @@
 from .components.BlockInterface import BlockInterface
 from .components.MiningInterface import MiningInterface
+from .components.ChainInterface import ChainInterface
+from .components.Chain import Chain
 from Router import Router
 import os
 
@@ -15,6 +17,11 @@ if not os.path.exists(DEFAULT_REJECT_BLOCK_PATH):
 
 if not os.path.exists(DEFAULT_PENDING_BLOCK_PATH):
 	os.mkdir(DEFAULT_PENDING_BLOCK_PATH)
+
+
+class Chain(Chain):
+	pass
+
 
 router = Router()
 routes = [
@@ -41,6 +48,16 @@ routes = [
 				"path" : "mine",
 				"endpoint" : "BlockMining",
 				"component" : MiningInterface
+			}
+		]
+	},
+	{
+		"path" : "chain",
+		"children" : [
+			{
+				"path" : "",
+				"component" : ChainInterface,
+				"endpoint" : "GetAllChain"
 			}
 		]
 	}

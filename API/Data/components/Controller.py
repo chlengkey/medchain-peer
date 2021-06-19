@@ -29,7 +29,7 @@ class Controller():
 		if not id.endswith(".json"):
 			filename += ".json"
 
-		filepath = os.path.join(os.getcwd(), self.DEFAULT_PATH_TO_PENDING_BLOCK, filename)
+		filepath = os.path.join(self.DEFAULT_PATH_TO_PENDING_BLOCK, filename)
 
 		if os.path.exists(filepath):
 			with open(filepath, 'r') as infile:
@@ -45,7 +45,7 @@ class Controller():
 	def list(self):
 		""" Mengambil keseluruhan data """
 		filelist = []
-		filepath = os.path.join(os.getcwd(), self.DEFAULT_PATH_TO_PENDING_BLOCK)
+		filepath = os.path.join(self.DEFAULT_PATH_TO_PENDING_BLOCK)
 		
 		for filename in os.listdir(filepath):
 			filelist.append(self.get(filename))

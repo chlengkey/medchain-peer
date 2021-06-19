@@ -1,5 +1,5 @@
 from .Block import Block
-import os
+import os, json
 
 class Chain():
   """Kelas Blockchain"""
@@ -50,12 +50,13 @@ class Chain():
       block.mine_block()
       return block
 
-  def load(self, filepath=""):
+  def load(self, filepath, blockToJson=False):
       blocks = sorted(os.listdir(filepath))
       for block in blocks:
-        with open(os.path.join(filepath, block), 'r') as infile:
+        blockId = os.path.join(filepath, block)
+        with open(blockId, 'r') as infile:
           loaded_json = infile.read()
-          loaded_block = Block(blockData=loaded_json)
+          loaded_block = Block().load(loaded_json)
           blockFilenameHash = block.split(".")[1]
           if loaded_block.hash != blockFilenameHash:
             ERROR = {
@@ -63,5 +64,13 @@ class Chain():
               "code" : "ILLEGAL_BLOCK_DETECTED"
             }
             return ERROR, False
+          if blockToJson :
+            loaded_block = json.loads(loaded_json)
           self.chain.append(loaded_block)
       return self, True
+
+  def extract(self):
+      return self.chain
+
+  def matchToken(self, token):
+      pass

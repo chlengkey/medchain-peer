@@ -1,21 +1,33 @@
 from .components.TokenController import TokenController
 from .components.Generator import Generator
+from Router import Router
 
 DEFAULT_TOKEN_PATH = "Token/store"
 
+router = Router()
 routes = [
 	{
-		"path" : "/token/check/<string:id>",
-		"endpoint" : "tokenGetter",
-		"component" : TokenController(DEFAULT_TOKEN_PATH)
-	},
-	{
-		"path" : "/token/generate",
-		"endpoint" : "tokenGenerate",
-		"component" : Generator(DEFAULT_TOKEN_PATH)
+		"path" : "token",
+		"children" : [
+			{
+				"path" : "create",
+				"endpoint" : "TokenCreate",
+				"component" : Generator,
+				"payload" : {
+					"path" : DEFAULT_TOKEN_PATH
+				}
+			},
+			{
+				"path" : "<string:id>",
+				"endpoint" : "TokenGet",
+				"component" : TokenController,
+				"payload" : {
+					"path" : DEFAULT_TOKEN_PATH
+				}
+			}
+		]
 	}
 ]
 
 def register(api):
-	for route in routes:
-		api.add_resource(route["component"], route['path'], endpoint=route['endpoint'])
+	router.register(api, routes)

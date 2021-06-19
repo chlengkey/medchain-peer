@@ -45,14 +45,13 @@ class Anamnesis(Crypto):
 		self.diagnosis = diagnosis
 		self.drugs = drugs
 		return self
-
+		
 class Patient(Crypto):
 	id = None
 	name = None
 	gender = None
 	weight = None
 	height = None
-	blood_pressure = None
 	allergy = {
 		"drugs" : [],
 		"food" : []
@@ -64,7 +63,6 @@ class Patient(Crypto):
 		self.gender = None
 		self.weight = None
 		self.height = None
-		self.blood_pressure = None
 		self.allergy = {
 			"drugs" : [],
 			"food" : []
@@ -78,6 +76,5 @@ class Patient(Crypto):
 		self.gender = gender
 		self.weight = weight
 		self.height = height
-		self.blood_pressure = blood_pressure
 		self.allergy = allergy
 		return self

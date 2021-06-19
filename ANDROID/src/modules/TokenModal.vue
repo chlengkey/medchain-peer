@@ -72,7 +72,8 @@
 				let privateData = cryptoFunc.encryptPrivateKeyUsingPublic(clinic.clinicId);				
 				//let privateData = cryptoFunc.encryptUsingPublicKey(clinic.clinicId, "riwayat pasien");
 				let data = {
-					payload : privateData
+					payload : privateData,
+					patient : "patient"
 				};
 				axios.post(clinic.clinicHost + ":5000/token/generate", data)
 				     .then(response => {

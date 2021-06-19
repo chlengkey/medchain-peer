@@ -21,6 +21,7 @@ class Block():
   index     = 0
   nonce     = 0
 
+  # Inisialisasi Block
   def __init__(self, index=False, data=False, prevHash=False, blockData=False):
       """Constructor untuk kelas block"""
 
@@ -32,14 +33,15 @@ class Block():
 
       if blockData :
         self.load(blockData)
-
-
+  
+  # Menghitung hash dari block
   def calculate_hash(self):
       """Fungsi untuk menghitung hash"""
       hash = str(self.timestamp) + str(self.data) + str(self.nonce) + str(self.prevHash)
       hash = hash.encode('utf-8')
       return hashlib.sha256(hash).hexdigest()
 
+  # Melakukan mining terhadap block
   def mine_block(self, difficulty=4):
       """Fungsi untuk melakukan Mining"""
       while(self.hash[0:difficulty] != str("0").zfill(difficulty)):
@@ -55,12 +57,17 @@ class Block():
         json.dump(self.get(), outfile)
         outfile.close()
 
+  # Membuat block dengan data yang sudah ada sebelumnya
+  # Data block terdapat pada path : Blockchain/store/mined
   def load(self, blockData):
       blockData = json.loads(blockData)
       self.__dict__ = blockData
+      return self
 
+  # Mengambil data block
   def get(self):
       return self.__dict__
-      
+
+  # Mengambil data block dan menghubahnya ke dalam bentuk JSON
   def toJson(self):
       return json.dumps(self.__dict__)
