@@ -2,6 +2,7 @@ from flask_restful import Resource,request
 from flask import request, abort
 from Blockchain import Chain
 from Data.models import Patient, Anamnesis
+from Chaincrypto import KeyBinding, Processor
 import random, shutil, time, os, json
 
 class TokenController(Resource):
@@ -40,9 +41,14 @@ class TokenController(Resource):
 		# Membuka file token
 		patientData = json.loads(self.openToken(path + "/data.json"))
 		patient = Patient().set(patientData['id'], patientData['name'])
-		
+
+		# Decrypt Patient Private and Public Key
+		key = KeyBinding("Chaincrypto/store")
+		processor = Processor()
 		patientPrivKey = self.openToken(path + "/credential.txt")
-		
+		patientPrivKey = processor.decrypt(key.getPrivateKey(), patientPrivKey)
+		patientPublicKey = patientData['publicKey']
+
 		# Mengambil data dari blockchain
 		chain, valid = Chain().load(self.DEFAULT_BLOCKCHAIN_PATH)
 		recordData = []
@@ -51,21 +57,30 @@ class TokenController(Resource):
 			for data in block.data:
 				if patient.id in data.keys():
 					record_data = data[patient.id]
-					record_patient_data = Patient(record_data['patient']).decode()
-					record_anamnesis_data = Anamnesis(record_data['anamnesis']).decode()
+					record_patient_data = Patient(record_data['patient']).decode(patientPrivKey)
+					record_anamnesis_data = Anamnesis(record_data['anamnesis']).decode(patientPrivKey)
+					
 					recordData.append({
 						"patient" : record_patient_data.get(), 
 						"anamnesis" : record_anamnesis_data.get()
 					})
 
+		# Jika data record sudah pernah ada
+		# Ambil data pasien yang memuat keadaan terakhir pasien
+		if len(recordData) > 0:
+			patient = Patient(recordData[len(recordData) - 1]['patient'])
+
 		tokenValid = {
-			'valid' : os.path.exists(path)
+			'valid' : os.path.exists(path),
+			'publicKey' : patientPublicKey,
+			'patient' : patient.get(),
+			'record' : recordData
 		}
 
 		#if os.path.exists(path):
 		#	shutil.rmtree(path)
 
-		return recordData
+		return tokenValid
 
 	def openToken(self, path):
 		with open(path, "r") as file:

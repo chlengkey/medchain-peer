@@ -7,7 +7,7 @@ def toBase64(string):
     return base64.b64encode(string)
 
 def generateKeys():
-    modulus_length = 4400
+    modulus_length = 12000
     private_key = RSA.generate(modulus_length, Random.new().read)
     public_key  = private_key.public_key()
     return private_key, public_key
@@ -23,7 +23,9 @@ if len(sys.argv) == 2:
 	privateKey = priv.exportKey()
 	publicKey  = public.exportKey()
 	print(type(publicKey))
-	
+
+	print(publicKey)
+
 	# Menyimpan private key ke dalam file
 	file_out = open(sys.argv[1] + "/private.pem", "wb")
 	file_out.write(privateKey)

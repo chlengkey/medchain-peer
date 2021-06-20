@@ -58,7 +58,7 @@
 	const NodeRSA = require('node-rsa');
 	const axios   = require('axios');
 	const md5     = require('md5');
-	const key     = new NodeRSA({b: 512});
+	const key     = new NodeRSA({b: 1024});
 
 	export default{
 		data(){
@@ -70,7 +70,7 @@
 					firstname        : "",
 					lastname         : "",
 					privateKey       : key.exportKey("pkcs1-private-pem"),
-					publicKey        : key.exportKey("pkcs8-public-pem")
+					publicKey        : key.exportKey("pkcs1-public-pem")
 				}
 			}
 		},
@@ -142,6 +142,6 @@
 				this.$router.replace("/account/login");
 			}
 
-		}
+		},
 	}
 </script>

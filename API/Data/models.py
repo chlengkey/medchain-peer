@@ -31,19 +31,25 @@ class Anamnesis(Crypto):
 	complaint = None
 	diagnosis = None
 	drugs = []
+	doctor = None
+	facility = None
 
 	def __init__(self, anamnesis=False):
 		self.complaint = None
 		self.diagnosis = None
 		self.drugs = []
+		self.doctor = None
+		self.facility = None
 
 		if anamnesis:
 			self.__dict__ = anamnesis
 
-	def set(self, complaint="", diagnosis="", drugs=""):
+	def set(self, complaint="", diagnosis="", drugs="", doctor="", facility=""):
 		self.complaint = complaint
 		self.diagnosis = diagnosis
 		self.drugs = drugs
+		self.doctor = doctor
+		self.facility = facility
 		return self
 		
 class Patient(Crypto):
@@ -52,6 +58,7 @@ class Patient(Crypto):
 	gender = None
 	weight = None
 	height = None
+	blood_type = None
 	allergy = {
 		"drugs" : [],
 		"food" : []
@@ -63,6 +70,7 @@ class Patient(Crypto):
 		self.gender = None
 		self.weight = None
 		self.height = None
+		self.blood_type = None
 		self.allergy = {
 			"drugs" : [],
 			"food" : []

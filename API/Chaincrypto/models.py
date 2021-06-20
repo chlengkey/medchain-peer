@@ -10,9 +10,12 @@ class Crypto:
 		key = KeyBinding()
 		processor = Processor()
 		cryptoKey = cryptoKey if cryptoKey else key.getPublicKey()
-		encoded = processor.encrypt(cryptoKey, str(json.dumps(self.__dict__)))
-		self.__dict__ = {'encoded': encoded}
-
+		
+		dataKeys = list(self.get().keys())
+		for dataKey in dataKeys:
+			if dataKey != "id":
+				self.__dict__[dataKey] = processor.encrypt(cryptoKey, self.get()[dataKey])
+		
 		return self
 
 	def decode(self, cryptoKey=False):
@@ -21,8 +24,11 @@ class Crypto:
 		key = KeyBinding()
 		processor = Processor()
 		cryptoKey = cryptoKey if cryptoKey else key.getPrivateKey()
-		decoded = processor.decrypt(cryptoKey, self.__dict__['encoded'])
-		self.__dict__ = json.loads(decoded)
+
+		dataKeys = list(self.get().keys())
+		for dataKey in dataKeys:
+			if dataKey != "id":
+				self.__dict__[dataKey] = processor.decrypt(cryptoKey, self.__dict__[dataKey])
 
 		return self
 

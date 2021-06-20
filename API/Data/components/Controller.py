@@ -10,9 +10,11 @@ class Controller():
 		"""	Data akan ditambahkan ke folder pending sebelum dibuat menjadi satu blok utuh 
 			Data terdiri dari 2 class yaitu : Patient, Anamnesis"""
 
-		patient = Patient(data['patient']).encode()
-		anamnesis = Anamnesis(data['anamnesis']).encode()
-		record = Record(data['patient']['id'], patient, anamnesis)
+		# Mengambil data JSON
+		patient_id = data['patient_id']
+		patient = Patient(data['patient'])
+		anamnesis = Anamnesis(data['anamnesis'])
+		record = Record(patient_id, patient, anamnesis)
 
 		filename = "{}.json".format(str(random.randint(10000,99999)))
 		filepath = os.path.join(os.getcwd(), self.DEFAULT_PATH_TO_PENDING_BLOCK, filename)
@@ -20,7 +22,10 @@ class Controller():
 			json.dump(record.get(), outfile)
 			outfile.close()
 
-		return record.get()
+		return {
+			"msg" : "Success adding new data",
+			"code" : "DATA200"
+		}
 
 	def get(self, id):
 		""" Mengambil data berdasarkan ID yang ada """
