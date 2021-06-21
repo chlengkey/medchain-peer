@@ -24,6 +24,14 @@ routes = [
 				"payload" : {
 					"path" : DEFAULT_TOKEN_PATH
 				}
+			},
+			{
+				"path" : "check/<string:id>/<string:check>",
+				"endpoint" : "TokenChecker",
+				"component" : TokenController,
+				"payload" : {
+					"path" : DEFAULT_TOKEN_PATH
+				}
 			}
 		]
 	}

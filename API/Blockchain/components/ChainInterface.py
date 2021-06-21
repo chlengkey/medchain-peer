@@ -8,5 +8,6 @@ class ChainInterface(Resource):
 		chain, valid = Chain().load("Blockchain/store/mined", blockToJson=True)
 		if not id : 
 			return chain.extract()
-		for chain in chain.extract():
-			print(chain)
+		for data in chain.extract():
+			print(data)
+		return chain.extract()

@@ -10,7 +10,7 @@ class Interface(Resource):
 		if id:
 			return self.controller.get(id)
 		return self.controller.list()
-
+		
 	def post(self):
 		data = request.get_json()
 		return self.controller.add(data)

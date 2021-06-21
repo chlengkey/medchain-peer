@@ -51,10 +51,11 @@ class Anamnesis(Crypto):
 		self.doctor = doctor
 		self.facility = facility
 		return self
-		
+
 class Patient(Crypto):
 	id = None
 	name = None
+	borndate = None
 	gender = None
 	weight = None
 	height = None
@@ -67,6 +68,7 @@ class Patient(Crypto):
 	def __init__(self, patient=False):
 		self.id = None
 		self.name = None
+		self.borndate = None
 		self.gender = None
 		self.weight = None
 		self.height = None
@@ -78,7 +80,7 @@ class Patient(Crypto):
 		if patient:
 			self.__dict__ = patient
 	
-	def set(self, id="", name="", gender="", weight="", height="", blood_pressure="", allergy=""):
+	def set(self, id="", name="", gender="", weight="", height="", blood_type="", allergy=""):
 		self.id = id
 		self.name = name
 		self.gender = gender

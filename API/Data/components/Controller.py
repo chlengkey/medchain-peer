@@ -24,6 +24,7 @@ class Controller():
 
 		return {
 			"msg" : "Success adding new data",
+			"success" : True,
 			"code" : "DATA200"
 		}
 

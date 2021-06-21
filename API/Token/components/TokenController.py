@@ -15,11 +15,15 @@ class TokenController(Resource):
 	def __init__(self, **kwargs):
 		self.DEFAULT_TOKEN_PATH = kwargs['path']
 
-	def get(self, id=None):
+	def get(self, id=None, check=False):
 		if request.remote_addr != '127.0.0.1':
 			abort(403)
 			return False
-		return self.tokenGetter(id)
+
+		if not check:
+			return self.tokenGetter(id)
+		elif check:
+			return self.tokenValid(id)
 
 	def delete(self, id):
 		if os.path.isdir(path):
@@ -27,17 +31,36 @@ class TokenController(Resource):
 			return True
 		return False
 
+	def tokenValid(self, id):
+		path = os.path.join(self.DEFAULT_TOKEN_PATH, id)
+		if not os.path.exists(path):
+			self.ERROR['code'] = "TOKEN_INVALID"
+			self.ERROR['msg'] = "Token is not valid"
+			self.ERROR['success'] = False
+			return self.ERROR
+		self.ERROR['code'] = "TOKEN_VALID"
+		self.ERROR['msg'] = "Token is valid"
+		self.ERROR['success'] = True
+		return self.ERROR
+
 	def tokenGetter(self, id):
 
 		# Cek Jika Panjang Token adalah 5 Karakter
 		if len(str(id)) < 5:
 			self.ERROR['code'] = "TOKEN_LENGTH_MINIMAL_5_CHARACTER"
 			self.ERROR['msg'] = "Token length should at least 4 character"
+			self.ERROR['success'] = False
 			return self.ERROR
 
 		# Mencari directory Token
 		path = os.path.join(self.DEFAULT_TOKEN_PATH, id)
 		
+		if not os.path.exists(path):
+			self.ERROR['code'] = "TOKEN_INVALID"
+			self.ERROR['msg'] = "Token is not valid"
+			self.ERROR['success'] = False
+			return self.ERROR
+
 		# Membuka file token
 		patientData = json.loads(self.openToken(path + "/data.json"))
 		patient = Patient().set(patientData['id'], patientData['name'])
@@ -71,6 +94,7 @@ class TokenController(Resource):
 			patient = Patient(recordData[len(recordData) - 1]['patient'])
 
 		tokenValid = {
+			'success' : True,
 			'valid' : os.path.exists(path),
 			'publicKey' : patientPublicKey,
 			'patient' : patient.get(),
