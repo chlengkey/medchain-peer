@@ -18,7 +18,7 @@ const routes = [
     component : DataPasien
   },
   {
-    path : '/pasien/periksa/tambah/:token',
+    path : '/pasien/periksa/:token',
     name : "Periksa Pasien",
     component : PeriksaPasien
   },

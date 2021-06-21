@@ -4,7 +4,7 @@
 		<template v-slot:content>
 			<p class="flex">
 				<Key class="mr-2 mt-1" width=5 height=5 />
-				<div >
+				<div>
 					<p class="text-lg font-bold mt-0">Masukan Token</p>
 					<p class="text-sm text-gray-500">Silahkan memasukan token pemeriksaan</p>
 				</div>
@@ -56,7 +56,7 @@
 		},
 		computed:{
 			defaultURL : function(){
-				return process.env.VUE_APP_API + "/token/check/" + this.token;
+				return process.env.VUE_APP_API + "/token/" + this.token;
 			}
 		},
 		methods : {
@@ -76,8 +76,8 @@
 					 		let tokenTemporary  = app.token;
 					 		app.token = "";
 					 		app.animateSpinIcon = false;
-
-					 		if(response.data.valid){
+					 		console.log(response.data)
+					 		if(response.data){
 					 			app.changeFooter('text-green-600', "Token valid");
 					 			app.$router.replace("/pasien/periksa/" + tokenTemporary);
 					 			setTimeout(function(){
