@@ -6,13 +6,13 @@
 		<ion-icon :icon="lockClosed" />
 		<br/>Buat Token<br/>
 		<span class="font-normal">Membantu pemeriksaan lebih aman</span>
-    </div>
+   </div>
 </template>
 
 <script type="text/javascript">
 
 	// Modules
-	import TokenModal from '@/modules/TokenModal.vue'
+	import TokenModal from '@/modules/TokenModal.vue';
 	import { modalController, alertController, IonIcon } from '@ionic/vue';
 
 	// Components and Icons

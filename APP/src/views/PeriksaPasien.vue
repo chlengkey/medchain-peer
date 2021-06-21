@@ -72,7 +72,7 @@
     </div>
 		
       <form>
-			<div class="grid grid-cols-2 gap-x-10 gap-y-4">
+			<div class="grid grid-cols-2 gap-x-10 gap-y-4 px-5">
             <div>
                <label>Nama Dokter :</label>
                <p class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500">{{pemeriksaan.nama_dokter}}</p>
@@ -84,7 +84,7 @@
             </div>
 			</div>
 
-         <div>
+         <div class="px-5">
             <label class="pt-4 ">Hasil Pemeriksaan :</label>
             <input placeholder="contoh: Pasien mengalami penyakit sesak nafas" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text" v-model="text" id="hasil_pemeriksaan" required>
 
@@ -92,7 +92,7 @@
             <input placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text" v-model="text" id="obat" required>
          </div>
 
-         <div class="grid grid-cols-2 gap-x-3 w-48">
+         <div class="gap-x-3 w-48 pl-5">
             <p class="mt-5 text-center yellow-glow-button">Simpan</p>
          </div>
 

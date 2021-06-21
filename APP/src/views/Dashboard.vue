@@ -18,11 +18,11 @@
          </div>
    </div>
 
-   <div class="p-5">
+   <div class="p-5" >
                 <h3 class="text-gray-600 text-2xl font-medium">Rekam Medis Pasien</h3>
                 <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
                     <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-                        <div class="flex items-end justify-end h-56 w-full bg-cover">
+                        <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')">
                         </div>
                         <div class="px-5 py-3">
                             <h3 class="text-gray-700 uppercase">Lihat Rekam Medis</h3>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-                        <div class="flex items-end justify-end h-56 w-full bg-cover">
+                        <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')">
                         </div>
                         <div class="px-5 py-3">
                             <h3 class="text-gray-700 uppercase">Buat Rekam Medis Baru</h3>
