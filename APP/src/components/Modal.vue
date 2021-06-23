@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<transition name="fade" mode="in-out">
-			<div class="backdrop z-50" @click="closeModal()" v-show="modalActive"></div>
+			<div class="backdrop fixed z-50" @click="closeModal()" v-show="modalActive"></div>
 		</transition>
 		<transition name="slide-fade" mode="in-out">
-			<div v-if="modalActive" class="w-96 h-auto bg-white absolute center-h-v rounded z-50">
+			<div v-if="modalActive" class="fixed overflow-y-auto max-h-full py-2 bg-white center-h-v rounded z-50" :class="'w-' + width">
 				<div class="px-5 my-4">
 					<slot name="content"></slot>
 				</div>
@@ -28,7 +28,12 @@
 <script type="text/javascript">
 
 	export default{
-
+		props : {
+			width : {
+				type : Number,
+				default : 96
+			}
+		},
 		data(){
 			return{
 				modalActive : false

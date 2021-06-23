@@ -56,7 +56,7 @@
 		},
 		computed:{
 			defaultURL : function(){
-				return process.env.VUE_APP_API + "/token/" + this.token;
+				return process.env.VUE_APP_API + "/token/check/" + this.token + "/true";
 			}
 		},
 		methods : {
@@ -77,7 +77,7 @@
 					 		app.token = "";
 					 		app.animateSpinIcon = false;
 					 		console.log(response.data)
-					 		if(response.data){
+					 		if(response.data.success){
 					 			app.changeFooter('text-green-600', "Token valid");
 					 			app.$router.replace("/pasien/periksa/" + tokenTemporary);
 					 			setTimeout(function(){
@@ -86,7 +86,9 @@
 					 			},500)
 					 			return;
 					 		}
-							app.changeFooter('text-red-600', "Token tidak valid");
+					 		else if(!response.data.success){
+					 			app.changeFooter('text-red-600', "Token tidak valid");
+					 		}
 						},1000)
 					 })
 			},
