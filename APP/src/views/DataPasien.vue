@@ -11,12 +11,12 @@
             <div class="flex p-3 mx-3 items-center">
 
                 <!-- Foto Profil -->
-                <avatar fullname="Chrisdityra Lengkey" size="60"></avatar>
+                <img class="inline object-cover w-16 h-16 mr-2 rounded-full" src="https://images.unsplash.com/photo-1612061279301-c1bd3a484fcf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" />
 
                 <!-- Nama dan Usia -->
                 <div>
                     <h2 class="text-2xl text-white px-2 font-semibold">{{user.username}}</h2>
-                    <h1 class="text-xl text-white font-bold px-2">{{user.umur}}</h1>
+                    <h1 class="text-xl text-white font-bold px-2">{{user.umur}} tahun</h1>
                 </div>
                 
             </div>
@@ -103,15 +103,15 @@
                 </thead>
                 <tbody>
                     <tr>
-                    <td class="border border-black-600 p-2">19/05/2020</td>
-                    <td class="border border-black-600 p-2">RS. Pancaran Kasih</td>
-                    <td class="border border-black-600 p-2">Dr. Cleyra Lovelace</td>
+                    <td class="border border-black-600 p-2">00/00/0000</td>
+                    <td class="border border-black-600 p-2">Puskesmas</td>
+                    <td class="border border-black-600 p-2">Dr. Medical Chain</td>
                     <td class="border border-black-600 p-2" @click="open()"><Folder/></td>
                     </tr>
                     <tr>
-                    <td class="border border-black-600 p-2">26/09/2019</td>
-                    <td class="border border-black-600 p-2">Puskesmas Wenang</td>
-                    <td class="border border-black-600 p-2">Aura Tuff, S.Ked</td>
+                    <td class="border border-black-600 p-2">00/00/0000</td>
+                    <td class="border border-black-600 p-2">Klinik</td>
+                    <td class="border border-black-600 p-2">Medical, S.Ked</td>
                     <td class="border border-black-600 p-2" @click="open()"><Folder/></td>
                     </tr>
                 </tbody>
@@ -145,14 +145,14 @@
         return{
             // mutable
 				user : {
-					username     : "Chrisdityra Lengkey",
-					umur  : "20 tahun",
-					berat_badan : "58 kg",
-                    tinggi_badan : "169 cm",
-                    golongan_darah : "A+",
-                    penyakit : "Amandel dan Maag",
-                    alergi_obat : "Asam Mefenamat",
-                    alergi_makanan : "Kacang Tanah"
+					username : "Patient",
+					umur  : "19",
+					berat_badan : "0",
+                    tinggi_badan : "0",
+                    golongan_darah : "A",
+                    penyakit : "none",
+                    alergi_obat : "none",
+                    alergi_makanan : "none"
             }
         }
     }

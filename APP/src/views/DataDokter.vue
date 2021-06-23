@@ -5,15 +5,15 @@
          <div class="top h-55 w-full bg-blue-600 overflow-hidden rounded-lg relative" >
             <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white p-3">
                <img src="https://images.unsplash.com/photo-1603030431751-f3109cd8d53b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" class="h-24 w-24 object-cover rounded-full">
-               <h1 class="text-xl font-semibold pt-2">Cleyra Lovelace</h1>
-               <h4 class="text-sm font-semibold">Joined Since '19</h4>
+               <h1 class="text-xl font-semibold pt-2">dr. {{doctor.name}}</h1>
+               <h4 class="text-sm font-semibold mt-1">{{doctor.specialist}}</h4>
             </div>
          </div>
 
          <div class="grid grid-cols-2 gap-x-10 gap-y-4">
             <div>
                <label>Email:</label>
-               <input placeholder="contoh: tekotok@gmail.com" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="email"  v-model="email" id="email" required>
+               <input placeholder="medical.chain@gmail.com" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="email"  v-model="email" id="email" required>
             </div>
 
             <div>
@@ -23,12 +23,12 @@
 
             <div>
                <label>Nama Depan:</label>
-               <input placeholder="contoh: Tekotok" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text"  v-model="text" id="fName" required>
+               <input placeholder="Medical" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text"  v-model="text" id="fName" required>
             </div>
 
             <div>
                <label>Nama Belakang:</label>
-               <input placeholder="contoh: Vernalta" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text" v-model="text" id="lName" required>
+               <input placeholder="Chain" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text" v-model="text" id="lName" required>
             </div>
          </div>
 
@@ -47,10 +47,10 @@
 
          <div>
             <label class="pt-4 ">nomor str:</label>
-            <input placeholder="contoh: 31.2.1.100.*.**.******" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="number" v-model="number" id="nomorSTR" required>
+            <input placeholder="31.2.1.100.*.**.******" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="number" v-model="number" id="nomorSTR" required>
 
             <label class="pt-4">Tempat Praktek:</label>
-            <input placeholder="contoh: RS. Siloam Manado" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text" v-model="text" id="tempatPraktek" required>
+            <input placeholder="Puskesmas Wenang" class="w-full p-2 border-b-2 border-fuchsia-600 border-gray-500" type="text" v-model="text" id="tempatPraktek" required>
          </div>
 
          <div class="grid grid-cols-2 gap-x-3 w-48">
@@ -72,6 +72,10 @@ import Avatar from 'vue-avatar-component'
 export default {
    data(){
       return {
+         doctor : {
+            name : 'Cleyra Lovelace, S.Ked',
+            specialist : 'Dokter Umum',
+         },
          email : '',
          password : '',
          picked : '',
