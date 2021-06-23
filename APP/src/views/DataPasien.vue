@@ -1,6 +1,9 @@
 <template>
 
+
 <div>
+
+    
     <!-- Data Diri Pasien -->
     <div class="flex h-36 mx-2 my-5 items-center justify-center">
         <div class="grid bg-blue-500 rounded-lg shadow-xl mt-8 md:w-2/4 lg:w-2/4">
@@ -73,7 +76,7 @@
 
     <!-- Riwayat Pemeriksaan -->
     <div class="flex items-center justify-center">
-    <div class="bg-blue-500 rounded-lg shadow-xl mt-8 md:w-4/5 lg:w-4/5">
+    <div class="bg-blue-500 rounded-lg shadow-xl mt-8 mx-10 w-full">
 
         <div class="grid grid-cols-2">
             <div>
