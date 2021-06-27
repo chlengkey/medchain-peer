@@ -121,7 +121,7 @@ export default  {
           "hash" : "98913n1jnjbugdsug2323",
           "tanggal" : "19-05-2021",
           "pasien_nama" : "Chrisdityra Lengkey",
-          "pasien_keluhan" : "Sakit pinggang dan  perut"
+          "pasien_keluhan" : "Sakit pinggang dan perut"
         }
       ],
       values : "2008-09-02"

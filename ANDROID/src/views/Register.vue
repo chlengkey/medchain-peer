@@ -41,7 +41,9 @@
 
 				<div class="mx-3 mt-4 flex text-sm">
 					<button @click="presentAlertConfirm()" class="font-semibold bg-green-100 text-green-700 px-4 py-2 rounded">Mendaftar</button>
+					<a href="/account/login">
 					<button class="font-semibold text-red-700 px-5 py-2 rounded">Batal</button>
+					</a>
 				</div>
 			</div>
 		</ion-content>
@@ -53,6 +55,8 @@
 	// Import necessary library and framework
 	import { crypto } from '@/function.js';
 	import { IonButton, alertController } from '@ionic/vue';
+	import { useRouter } from 'vue-router';
+	import { defineComponent } from 'vue';
 
 	// API and Self Configuration
 	const NodeRSA = require('node-rsa');
@@ -60,7 +64,7 @@
 	const md5     = require('md5');
 	const key     = new NodeRSA({b: 1024});
 
-	export default{
+	export default defineComponent({
 		data(){
 			return{
 				user : {
@@ -139,9 +143,18 @@
 				let credential = md5(this.user.username + this.user.password);
 				delete this.user.password;
 				localStorage.setItem(credential, JSON.stringify(this.user));
-				this.$router.replace("/account/login");
+				this.router.replace("/account/login");
+				alert("Akun berhasil didaftarkan!, Silahkan login");
+				setTimeout(function(){
+					location.reload();
+				}, 1500)
 			}
 
 		},
-	}
+
+		setup() {
+			const router = useRouter();
+			return { router };
+		}
+	})
 </script>

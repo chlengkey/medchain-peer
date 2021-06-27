@@ -1,7 +1,7 @@
 import hashlib
 import json
 from datetime import date
-import time
+import time, os
 
 # Universal Function
 def today_datetime():
@@ -50,9 +50,9 @@ class Block():
         print("{},{},{}".format(self.hash[0:2], self.hash, self.nonce))
 
       # Menambahkan Block Baru
-      filepath = "Blockchain/store/mined"
+      filepath = os.path.join("Blockchain", "store", "mined")
       filename = "{}.{}.json".format(self.index, self.hash)
-      finalpath = filepath + "/" + filename
+      finalpath =  os.path.join(filepath, filename)
       with open(finalpath, 'w') as outfile:
         json.dump(self.get(), outfile)
         outfile.close()

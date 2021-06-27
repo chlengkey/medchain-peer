@@ -3,7 +3,7 @@
 		
 		<Modal ref="modal" width="10/12">
 			<template v-slot:content>
-				<PatientProfile :patient="patient" />
+				<PatientProfile :patient="patient" readonly="true"/>
 				<PatientExamine :anamnesis="anamnesis" readonly="true"/>
 			</template>
 		</Modal>
@@ -52,7 +52,7 @@
 					</td>
 				</tr>				
 			</tbody>
-			<p v-else class="bg-yellow-50 text-yellow-600 font-semibold text-sm px-6 py-3">Pasien belum punya data riwayat</p> 
+			<p v-else class="bg-yellow-50 rounded-lg mt-1 text-yellow-600 font-semibold text-sm px-6 py-3">Pasien belum punya data riwayat</p> 
 		</table>
 	</div>
 </template>

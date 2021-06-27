@@ -5,6 +5,9 @@
             <span class="text-red-50"><b class="bg-red-100 px-2 py-1 rounded text-red-600 mr-1.5">{{timer}}</b> Sebelum sesi pemeriksaan anda berakhir</span>    
         </div>
         <PatientProfile :patient="patient" />
+
+        <p class="my-2 text-red-400 italic text-sm">* Silahkan Menambahkan atau Mengubah data Diri Pasien diatas sesuai Hasil Pemeriksaan</p>
+
         <PatientExamine :anamnesis="anamnesis" @on-submit="create()"/>
         <PatientHistory :record="record" />
 	</div>

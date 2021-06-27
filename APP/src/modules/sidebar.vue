@@ -20,7 +20,7 @@
 					<p class="nav-item"><Home class="-mt-0.5 mr-2"/>Dashboard</p>
 				</router-link>
 				
-				<router-link to="/pasien/:token">
+				<router-link to="/pasien/periksa/:token">
 					<p class="nav-item"><UserGroup class="-mt-0.5 mr-2"/>Data Pasien</p>
 				</router-link>
 
@@ -28,9 +28,9 @@
 					<p class="nav-item"><UserAdd class="-mt-0.5 mr-2"/>Data Dokter</p>
 				</router-link>
 				
-				<router-link to="/pengaturan">
+	<!--		<router-link to="/pengaturan">
 					<p class="nav-item"><Cog class="-mt-0.5 mr-2"/>Pengaturan</p>
-				</router-link>
+				</router-link> -->
 
 			</div>
 

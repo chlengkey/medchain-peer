@@ -10,7 +10,12 @@
 			</div>
 			<div>
 				<label>Nama Layanan Kesehatan :</label>
-				<input class="w-full p-2 border-b border-gray-300" placeholder="Contoh. Puskesmas Tomohon" required="true" v-model="anamnesis.facility" disabled type="text">
+				<select class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" type="text">
+					<option>Puskesmas Tomohon</option>
+					<option>Klinik Dokter Cleyra</option>
+					<option>Puskesmas Wenang</option>
+				</select>
+				<!-- <input class="w-full p-2 border-b border-gray-300" placeholder="Contoh. Puskesmas Tomohon" required="true" v-model="anamnesis.facility" disabled type="text"> -->
 			</div>
 		</div>
 

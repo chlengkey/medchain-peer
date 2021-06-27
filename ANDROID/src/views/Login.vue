@@ -20,7 +20,7 @@
 					<ion-input type="password" @IonInput="user.password = $event.target.value"></ion-input>
 				</ion-item>
 				<div class="mx-3 mt-4">
-					<a class="text-sm text-gray-500" href="/account/register">Anda belum punya akun? klik disini</a><br/>
+					<a class="text-sm text-gray-500 no-underline hover:underline" href="/account/register">Anda belum punya akun? klik disini</a><br/>
 					<button @click="login()" class="font-semibold bg-green-100 text-green-700 px-4 py-2 rounded mt-2">Masuk</button>
 				</div>
 			</div>

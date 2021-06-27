@@ -56,6 +56,7 @@ class Chain():
         blockId = os.path.join(filepath, block)
         with open(blockId, 'r') as infile:
           loaded_json = infile.read()
+          print(loaded_json)
           loaded_block = Block().load(loaded_json)
           blockFilenameHash = block.split(".")[1]
           if loaded_block.hash != blockFilenameHash:

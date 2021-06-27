@@ -9,8 +9,8 @@
 				<div class="grid grid-cols-6 mb-5">
 				<img src="../assets/logo.png" class="w-32 mt-2 align-bottom col-span-5">
 					
-					<!-- Notifications -->
-					<ion-icon class="rounded-full h-5 w-5 p-2" :icon="notifications" style="background-color: #F59E0B"/>
+					<!-- Notifications 
+					<ion-icon class="rounded-full h-5 w-5 p-2" :icon="notifications" style="background-color: #F59E0B"/>-->
 					
 					<!-- Account -->
 					<ion-router-link href="/account">
@@ -21,10 +21,12 @@
 					
 
 				</div>
+
 				<div class="my-16" style="font-family:Inter">
 					<p class="text-xl text-center font-semibold">Hi, {{user.firstname}}</p>
 					<p class="text-sm text-center text-gray-500 mb-4">Ada yang bisa kami bantu untuk anda?</p>
 				</div>
+
 			</div>
 
 			<!-- Covid Protocol -->
@@ -56,10 +58,10 @@
 
          </div>
 
-			<div style="font-family:Inter">
-			<ion-progress-bar v-if="showProgressBar" type="indeterminate"></ion-progress-bar>
-		</div>
-		<div class="h-20"></div>
+	<!--	<div style="font-family:Inter">
+				<ion-progress-bar v-if="showProgressBar" type="indeterminate"></ion-progress-bar>
+			</div>
+			<div class="h-20"></div>
 		
 		<div class="mx-4">
 			<div	class="border-b border-gray-400 pb-3 mb-5"
@@ -69,7 +71,7 @@
 				<p class="text-sm mt-0 text-gray-600">{{clinic.clinicAddress}}</p>
 		   </div>
 
-	</div>
+		</div> -->
             
 		</ion-content>
 	</ion-page>
@@ -109,11 +111,14 @@
 			}
 		},
 		created(){
+			var app = this;
 			let loginCredential = localStorage.getItem('logged');
-			if (loginCredential) {
-				let data = localStorage.getItem(loginCredential); 
-				this.user = JSON.parse(data);
-			}
+			setTimeout(function(){	
+				if (loginCredential) {
+					let data = localStorage.getItem(loginCredential); 
+					app.user = JSON.parse(data);
+				}
+			}, 1000)
 		}
 	}
 </script>

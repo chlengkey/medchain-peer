@@ -15,9 +15,13 @@
 		<div class="h-20"></div>
 		<!-- Tutup Pemisah -->
 
+		<div>
+			<ion-searchbar showCancelButton="focus" @ionInput="search = $event.target.value; onInput$.next($event.target.value)"></ion-searchbar>
+		</div>
+
 		<div class="mx-4 mt-4">
 			<div class="border-b border-gray-400 pb-3 mb-5"
-				 v-for="clinic in clinics" :key="clinic.clinicId"
+				 v-for="clinic in dataFasilitas_Kesehatan" :key="clinic.clinicId"
 		    	 @click="proceedToMakeToken(clinic)">
 				<p class="font-bold text-sm">{{clinic.clinicName}}</p>
 				<p class="text-sm mt-0 text-gray-600">{{clinic.clinicAddress}}</p>
@@ -47,6 +51,7 @@
 		data(){
 			return{
 				showProgressBar : false,
+				search : "",
 				clinics : [
 					{
 						clinicName    : "Puskesmas Tomohon",
@@ -57,6 +62,14 @@
 				]
 			}
 		},
+
+		computed : {
+			dataFasilitas_Kesehatan: function(){
+				console.log (this.clinics)
+				return this.clinics.filter(clinic => clinic.clinicName.toLowerCase().includes(this.search.toLowerCase()))
+			}
+		},
+
 		methods : {
 
 			dismiss : function(){

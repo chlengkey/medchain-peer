@@ -34,7 +34,8 @@ cors = CORS(app, resources = {r"/*" : { "origin" : "*" }})
 components = [Token, Blockchain, Data]
 
 for component in components:
-    component.register(api)
+    print(component.register(api))
+    #component.register(api)
 
 # Crypto Test
 api.add_resource(Cryp, "/crypto/<string:id>")
@@ -50,4 +51,4 @@ def chain():
     return str(medChain.chain)"""
 
 if __name__ == "__main__":
-   app.run(debug=True, host="0.0.0.0")
+   app.run(debug=True)

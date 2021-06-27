@@ -7,8 +7,8 @@ import os
 class Mining():
 	""" Kelas untuk melakukan Mining """
 	
-	DEFAULT_CHAIN_PATH = "Blockchain/store/mined"
-	DEFAULT_PATH_TO_MINE = "Blockchain/store/pending"
+	DEFAULT_CHAIN_PATH = os.path.join("Blockchain", "store", "mined")
+	DEFAULT_PATH_TO_MINE = os.path.join("Blockchain", "store", "pending")
 
 	def start(self):
 		""" 
@@ -32,6 +32,7 @@ class Mining():
 
 		# Membuat Chain Baru
 		chain, valid = Chain().load(self.DEFAULT_CHAIN_PATH)
+		print(valid)
 		if valid:
 			isChainValid = chain.valid()
 			if isChainValid:
