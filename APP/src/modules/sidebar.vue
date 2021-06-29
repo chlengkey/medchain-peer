@@ -27,10 +27,10 @@
 				<router-link to="/dataDokter">
 					<p class="nav-item"><UserAdd class="-mt-0.5 mr-2"/>Data Dokter</p>
 				</router-link>
-				
-	<!--		<router-link to="/pengaturan">
+
+				<router-link to="/pengaturan">
 					<p class="nav-item"><Cog class="-mt-0.5 mr-2"/>Pengaturan</p>
-				</router-link> -->
+				</router-link>
 
 			</div>
 

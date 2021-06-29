@@ -1,5 +1,4 @@
 <template>
-
   <div class="flex">
     <Sidebar/>
     <div class="w-full">

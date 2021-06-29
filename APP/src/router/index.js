@@ -3,7 +3,7 @@ import Dashboard from '@/views/Dashboard.vue'
 import DataPasien from '@/views/DataPasien.vue'
 import DataDokter from '@/views/DataDokter.vue'
 import PeriksaPasien from '@/views/PeriksaPasien.vue'
-import Pengaturan from '@/views/Pengaturan.vue'
+import Pengaturan from '@/mining/index.vue'
 import Login from '@/account/login.vue'
 
 const routes = [
