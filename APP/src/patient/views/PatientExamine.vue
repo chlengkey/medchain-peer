@@ -1,25 +1,59 @@
 <template>
+	<div>
+
+		<Modal ref="modal" width="3/12">
+			<template v-slot:content>
+				<p class="text-lg font-bold mb-1">Tambah Obat</p>
+				<p class="text-sm text-gray-600 mb-2">Silahkan mengisi semua form dibawah</p>
+				<label>Pilih Obat :</label>
+				<select class="w-full p-2 border-b border-gray-300" required="true" v-model="drug.name">
+					<option>Amoxilin</option>
+					<option>Paracetamol</option>
+					<option>CTM</option>
+				</select>
+
+				<label>Aturan Konsumsi :</label>
+				<select class="w-full p-2 border-b border-gray-300" required="true" v-model="drug.dose">
+					<option>3 x sehari</option>
+					<option>2 x sehari</option>
+					<option>1 x sehari</option>
+				</select>
+
+				<label>Aturan Konsumsi :</label>
+				<textarea class="w-full p-2 border-b border-gray-300" placeholder="Contoh: Pasien mengalami penyakit sesak nafas" required="true" v-model="drug.notes"></textarea>
+
+			</template>
+
+			<template v-slot:button>
+				<button @click="addDrug()" class="orange-button col-span-2 ml-2">
+					<span>Tambah</span>
+				</button>
+			</template>
+		</Modal>
+
 	<form class="shadow-lg mt-3 mb-10" @submit.prevent="create()">
+
 		<p class="text-2xl text-gray-800 font-bold mt-2 mb-0.5">Form Pemeriksaan Dokter</p>
 		<span class="text-gray-400 text-sm"><span class="text-red-600">*</span> Masukan data pemeriksaan disini</span>
 		<hr class="mt-4" />
 		<div class="grid grid-cols-2 gap-x-10 gap-y-4">
 			<div>
 				<label>Nama Dokter :</label>
-				<input class="w-full p-2 border-b border-gray-300" placeholder="Contoh. Cleyra Lovelace" required="true" v-model="anamnesis.doctor" disabled type="text">
+				<input class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.doctor" disabled type="text">
 			</div>
 			<div>
 				<label>Nama Layanan Kesehatan :</label>
-				<select class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" type="text">
+<!-- 			<select class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" type="text">
 					<option>Puskesmas Tomohon</option>
 					<option>Klinik Dokter Cleyra</option>
 					<option>Puskesmas Wenang</option>
-				</select>
-				<!-- <input class="w-full p-2 border-b border-gray-300" placeholder="Contoh. Puskesmas Tomohon" required="true" v-model="anamnesis.facility" disabled type="text"> -->
+				</select> -->
+				 <input class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" disabled type="text"> 
 			</div>
 		</div>
 
 		<section>
+
 			<!-- Keluhan (Complaint) -->
 			<label>Keluhan Pasien :</label>
 			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Contoh: Pasien mengalami penyakit sesak nafas" required="true" v-model="anamnesis.complaint"></textarea>
@@ -30,17 +64,29 @@
 
 			<!-- Obat (Drugs) -->
 			<label>Obat yang Diberikan :</label>
-			<input required="true" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" v-model="anamnesis.drugs" id="obat">
+			<div @click="$refs.modal.openModal()" class="w-full border rounded border-gray-300 p-4 mt-2">
+				<span v-for="drug_ in anamnesis.drugs" class="mr-2 rounded-full bg-yellow-100 text-yellow-700 py-2 px-4 font-semibold">{{drug_.name}} | {{drug_.dose}} </span>
+			</div>
+<!--			<input @click="$refs.modal.openModal()" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" 					v-model="anamnesis.drugs" id="obat"> -->
+
 		</section>
+
 		<p v-if="!readonly" @click="create()" class="mt-5 text-center yellow-glow-button">Simpan</p>
+		
 	</form>
+	</div>
 </template>
 
 <script type="text/javascript">
 	
 	import Anamnesis from "../models/Anamnesis.js";
+	import Drug from "../models/Drug.js";
+	import Modal from "@/components/Modal.vue"
 
 	export default{
+		components :{ 
+			Modal
+		},
 		props :{
 			anamnesis : {
 				type: Object,
@@ -53,7 +99,8 @@
 		},
 		data(){
 			return{
-				submitButtonState : true
+				submitButtonState : true,
+				drug : new Drug()
 			}
 		},
 		methods : {
@@ -61,6 +108,25 @@
 				if (!this.readonly) {
 					this.$emit('on-submit')	
 				}
+			},
+			addDrug() {
+				var app = this;
+				let exists = false;
+				if(this.drug.name == "" || this.drug.dose == "" || this.drug.notes == ""){
+					alert("Anda harus melengkapi semua data obat!");
+					return;
+				}
+				this.anamnesis.drugs.forEach(function(value, i){
+					if(value.name == app.drug.name){
+						app.anamnesis.drugs[i] = app.drug;
+						exists = true;
+					}
+				});
+				if(!exists){
+					app.anamnesis.drugs.push({name : app.drug.name, dose : app.drug.dose, notes : app.drug.notes});
+				}
+				app.drug = new Drug();
+				app.$refs.modal.closeModal();
 			}
 		}
 	}

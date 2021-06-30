@@ -10,6 +10,16 @@
 
 		<p class="text-2xl text-gray-800 font-bold mt-2 mb-0.5">Riwayat Pemeriksaan Pasien</p>
             <span class="text-gray-400 text-sm">Hasil pemeriksaan dapat dilihat disini</span>
+
+		<div class="relative text-gray-600 focus-within:text-gray-400 mt-2">
+			<span class="absolute inset-y-0 left-0 flex items-center pl-2">
+				<button type="submit" class="p-1 focus:outline-none focus:shadow-outline"><Search/>
+				</button>
+			</span>
+			
+			<input type="search" name="pencarian" class="py-1 text-sm text-white bg-gray-900 w-5/6 h-8 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900" placeholder="Mencari Pemeriksaan..." autocomplete="off">
+		</div>
+
 		<table class="overflow-x-auto w-full text-md bg-white rounded mb-20 mt-4">
 			<thead>
 				<tr class="text-xs text-gray-500 bg-gray-50 border-t border-b border-gray-200 rounded">
@@ -60,12 +70,13 @@
 <script type="text/javascript">
 	
 	import InformationCircle from '@/assets/icons/informationCircle.vue'
+	import Search from '@/assets/icons/search.vue'
 	import Modal from '@/components/Modal.vue'
 	import PatientExamine from '@/patient/views/PatientExamine.vue'
 	import PatientProfile from '@/patient/views/PatientProfile.vue'
 
 	export default{
-		components : {InformationCircle, Modal, PatientProfile, PatientExamine},
+		components : {InformationCircle, Search, Modal, PatientProfile, PatientExamine},
 		props : {
 			record : {
 				type : Array,
