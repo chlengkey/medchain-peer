@@ -146,6 +146,7 @@
 
                     if(seconds <= 0 && minutes <= 0){
                         clearInterval(timer);
+                        app.$router.replace("/");
                         Swal.fire("Waktu Habis", "Waktu pemeriksaan anda habis, anda tidak bisa lagi melihat riwayat medis pasien", "error");
                     }
                 }, 1000);},

@@ -1,14 +1,13 @@
 <template>
 	<div class="h-full">
-		<TokenModal ref="tokenModal" />
-
+		<TokenModal ref="tokenModal"/>
 		<div class="md:w-56"></div>
 		<div class=" fixed w-56 bg-blue-500 h-full shadow">
 			
 			<div class="px-4 mt-5">
 				<img src="@/assets/logo.png" class="w-8 mb-5">
 			</div>
-			
+
 			<!-- divider -->
 			<hr class="my-5 border-white opacity-30" />
 
