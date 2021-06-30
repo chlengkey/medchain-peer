@@ -57,7 +57,7 @@
                     const app = this;
                     let encoded_patient = app.encode(app.patient);
                     let encoded_anamnesis = app.encode(app.anamnesis);
-                    
+
                     // Memulai Loading
                     Swal.fire({
                         icon : "info",
@@ -111,6 +111,7 @@
                     axios.get(DEFAULT_URL + "/token/" + app.$route.params.token)
                         .then(response => {
                             if(response.data.success){
+                                console.log(response.data)
                                 // Memasukan key untuk proses enkripsi
                                 key.importKey(response.data.publicKey, "pkcs1-public-pem");
                                 // Mengambil data pasien

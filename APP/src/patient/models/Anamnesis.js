@@ -1,7 +1,7 @@
 export default class Anamnesis{
 	complaint = "";
 	diagnosis = "";
-	drugs = "";
+	drugs = [];
 	doctor = "";
 	facility = "";
 }
