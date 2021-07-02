@@ -44,19 +44,12 @@
 			<div class="grid px-5 grid-cols-3 gap-2">
 				<MedRec ref="medrec"></MedRec>
 				<Tokenization ref="tokenization"></Tokenization>
+         	</div>
 
-						<!-- BLOCKCHAIN CHECKED
-				<div :class="{'bg-green-500':blockchain.valid, 'bg-red-500': !blockchain.valid}" 
-            class="h-full rounded-md p-3 text-white text-xs font-bold" style="font-family:'Inter'">
-            <ion-icon v-if="blockchain.valid" class="mr-1 text-xl" :icon="shieldCheckmark" />
-            <ion-icon v-if="!blockchain.valid" class="mr-1 text-xl" :icon="close" />
-            <span>Blockchain </span> 
-            <span v-if="blockchain.valid">Valid</span>
-            <span v-else>Tidak Valid</span>
-            </div> 
-						BLOCKCHAIN CHECKED -->
-
-         </div>
+         	<div>
+         		<div class="border-b border-gray-400 pb-3 mb-5">
+         		</div>
+         	</div>
 
 	<!--	<div style="font-family:Inter">
 				<ion-progress-bar v-if="showProgressBar" type="indeterminate"></ion-progress-bar>

@@ -13,7 +13,7 @@ class Crypto:
 		
 		dataKeys = list(self.get().keys())
 		for dataKey in dataKeys:
-			if dataKey != "id":
+			if dataKey != "id" and dataKey != "date_time":
 				self.__dict__[dataKey] = processor.encrypt(cryptoKey, self.get()[dataKey])
 		
 		return self
@@ -27,7 +27,7 @@ class Crypto:
 
 		dataKeys = list(self.get().keys())
 		for dataKey in dataKeys:
-			if dataKey != "id":
+			if dataKey != "id" and dataKey != "date_time":
 				self.__dict__[dataKey] = processor.decrypt(cryptoKey, self.__dict__[dataKey])
 
 		return self

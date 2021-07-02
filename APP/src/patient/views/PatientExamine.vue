@@ -75,10 +75,15 @@
 			<textarea required="true" class="w-full p-2 border-b border-gray-300" placeholder="Contoh: Pasien diduga menderita flu berat" v-model="anamnesis.diagnosis"></textarea>
 
 			<!-- Obat (Drugs) -->
-			<label>Obat yang Diberikan :</label>
+			<label @click="$refs.modal.openModal()">Obat yang Diberikan :</label>
 			<div @click="$refs.modal.openModal()" class="w-full border rounded border-gray-300 p-4 mt-2">
-				<span v-for="drug_ in anamnesis.drugs" class="mr-2 rounded-full bg-yellow-100 text-yellow-700 py-2 px-4 font-semibold">{{drug_.name}} | {{drug_.dose}} </span>
+				<input type="hidden" v-model="anamnesis.drugs">
+				<p class="text-sm text-gray-600" v-if="drugs == 0">Silahkan menambahkan obat disini</p>
+				<span v-for="drug_ in drugs" v-else class="relative mr-2 rounded-full bg-yellow-100 text-yellow-700 py-2 px-4 font-semibold pr-5 cursor-pointer">{{drug_.name}} | {{drug_.dose}}
+					<b class="absolute top-0 -mt-3 rounded-full text-red-500 cursor-pointer">x</b>
+				</span>
 			</div>
+<<<<<<< HEAD
 <!--		
 			<input @click="$refs.modal.openModal()" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" 	v-model="anamnesis.drugs" id="obat"> 
 -->
@@ -86,6 +91,8 @@
 			<label>Hasil Pemeriksaan Lab :</label>
 			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Hasil Pemeriksaan Lab atau sebagainya" v-model="anamnesis.additional_check"></textarea>
 
+=======
+>>>>>>> dc8f18cbce8142c5488bc3f06ce1f7af17a39faf
 		</section>
 
 		<p v-if="!readonly" @click="create()" class="mt-5 text-center yellow-glow-button">Simpan</p>
@@ -117,15 +124,18 @@
 		data(){
 			return{
 				submitButtonState : true,
-				drug : new Drug()
+				drug : new Drug(),
+				drugs : []
 			}
 		},
 		methods : {
+			
 			create(){
 				if (!this.readonly) {
 					this.$emit('on-submit')	
 				}
 			},
+
 			addDrug() {
 				var app = this;
 				let exists = false;
@@ -133,18 +143,59 @@
 					alert("Anda harus melengkapi semua data obat!");
 					return;
 				}
-				this.anamnesis.drugs.forEach(function(value, i){
+				this.drugs.forEach(function(value, i){
 					if(value.name == app.drug.name){
-						app.anamnesis.drugs[i] = app.drug;
+						app.drugs[i] = app.drug;
 						exists = true;
 					}
 				});
 				if(!exists){
-					app.anamnesis.drugs.push({name : app.drug.name, dose : app.drug.dose, notes : app.drug.notes});
+					app.drugs.push(
+						{	
+							name : app.drug.name, 
+							dose : app.drug.dose, 
+							notes : app.drug.notes
+						});
 				}
 				app.drug = new Drug();
+				app.anamnesis.drugs = app.load_as_text(app.drugs);
 				app.$refs.modal.closeModal();
+			},
+
+			removeDrug(drug_name){
+				
+			},
+
+			loadDrugs(arr){
+				if(arr != ""){
+					arr = arr.split(",");
+					let drugs = []
+					arr.forEach(element => {
+						element = element.split("-");
+						drugs.push({
+							name : element[0],
+							dose : element[1],
+							notes : element[2]
+						})
+					});
+					this.drugs = drugs;
+				}
+			},
+
+			load_as_text(text){
+				let data = []
+				text.forEach(element => {
+					let arr = element.name + "-" + element.dose + "-" + element.notes;
+					data.push(arr);
+				})
+				return data.join(",");
 			}
+		},
+
+		created(){
+			var app = this;
+			console.log(app.anamnesis.drugs)
+			app.loadDrugs(app.anamnesis.drugs);
 		}
 	}
 </script>
