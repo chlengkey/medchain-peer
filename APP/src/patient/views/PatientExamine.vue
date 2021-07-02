@@ -36,20 +36,32 @@
 		<p class="text-2xl text-gray-800 font-bold mt-2 mb-0.5">Form Pemeriksaan Dokter</p>
 		<span class="text-gray-400 text-sm"><span class="text-red-600">*</span> Masukan data pemeriksaan disini</span>
 		<hr class="mt-4" />
-		<div class="grid grid-cols-2 gap-x-10 gap-y-4">
+		<div class="grid grid-cols-3 gap-x-10 gap-y-4">
+
+<!--
+			<div>
+				<label>Tanggal Pemeriksaan :</label>
+				<input class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.date" type="date">
+			</div>
+-->
+
 			<div>
 				<label>Nama Dokter :</label>
 				<input class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.doctor" disabled type="text">
 			</div>
+
 			<div>
 				<label>Nama Layanan Kesehatan :</label>
-<!-- 			<select class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" type="text">
+<!-- 			
+				<select class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" type="text">
 					<option>Puskesmas Tomohon</option>
 					<option>Klinik Dokter Cleyra</option>
 					<option>Puskesmas Wenang</option>
-				</select> -->
+				</select> 
+-->
 				 <input class="w-full p-2 border-b border-gray-300" required="true" v-model="anamnesis.facility" disabled type="text"> 
 			</div>
+			
 		</div>
 
 		<section>
@@ -59,7 +71,7 @@
 			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Contoh: Pasien mengalami penyakit sesak nafas" required="true" v-model="anamnesis.complaint"></textarea>
 
 			<!-- Diagnosa (Diagnosis) -->
-			<label>Hasil Pemeriksaan :</label>
+			<label>Hasil Diagnosa Dokter :</label>
 			<textarea required="true" class="w-full p-2 border-b border-gray-300" placeholder="Contoh: Pasien diduga menderita flu berat" v-model="anamnesis.diagnosis"></textarea>
 
 			<!-- Obat (Drugs) -->
@@ -67,7 +79,12 @@
 			<div @click="$refs.modal.openModal()" class="w-full border rounded border-gray-300 p-4 mt-2">
 				<span v-for="drug_ in anamnesis.drugs" class="mr-2 rounded-full bg-yellow-100 text-yellow-700 py-2 px-4 font-semibold">{{drug_.name}} | {{drug_.dose}} </span>
 			</div>
-<!--			<input @click="$refs.modal.openModal()" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" 					v-model="anamnesis.drugs" id="obat"> -->
+<!--		
+			<input @click="$refs.modal.openModal()" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" 	v-model="anamnesis.drugs" id="obat"> 
+-->
+
+			<label>Hasil Pemeriksaan Lab :</label>
+			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Hasil Pemeriksaan Lab atau sebagainya" v-model="anamnesis.additional_check"></textarea>
 
 		</section>
 
