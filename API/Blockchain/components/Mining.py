@@ -22,8 +22,7 @@ class Mining():
 				"code" : "MINING_NOT_NEEDED"
 			}
 			return False, ERROR
-		print(dataList)
-		print("Check")
+			
 		return True, dataList
 
 	def start(self):

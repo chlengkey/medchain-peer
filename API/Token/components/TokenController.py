@@ -101,8 +101,8 @@ class TokenController(Resource):
 			'record' : recordData
 		}
 
-		if os.path.exists(path):
-			shutil.rmtree(path)
+		#if os.path.exists(path):
+			#shutil.rmtree(path)
 
 		return tokenValid
 

@@ -34,7 +34,7 @@
 				<tr v-for="record_data in record" class="transition border-b border-gray-200 pointer text-sm font-semibold text-gray-800">
 
 					<td class="p-3 px-6 py-3">
-						<span v-if="record_data.anamnesis.facility">{{record_data.anamnesis.date}}</span>
+						<span v-if="record_data.anamnesis.date_time">{{record_data.anamnesis.date_time}}</span>
 						<span v-else>05-10-2021</span>
 					</td>
 

@@ -1,4 +1,5 @@
 from Chaincrypto import Crypto
+from datetime import datetime
 
 class Record():
 
@@ -10,29 +11,28 @@ class Record():
 		self.patient_id = id
 		self.patient = patient
 		self.anamnesis = anamnesis
+		self.tanggal = str(datetime.now())
 
 		if data:
 			self.patient_id = list(data.keys())[0]
+			self.tanggal = str(datetime.now())
 			self.patient = Patient(data[self.patient_id]['patient'])
 			self.anamnesis = Anamnesis(data[self.patient_id]['anamnesis'])
 
 	def get(self):
+		app = self
 		patient = self.patient.get()
 		anamnesis = self.anamnesis.get()
 
 		return {
 			"{}".format(self.patient_id) : {
 				"patient" : patient,
-				"anamnesis" : anamnesis
+				"anamnesis" : anamnesis,
+				"tanggal" : app.tanggal
 			}
 		}
 
 class Anamnesis(Crypto):
-	complaint = None
-	diagnosis = None
-	drugs = []
-	doctor = None
-	facility = None
 
 	def __init__(self, anamnesis=False):
 		self.complaint = None
@@ -42,6 +42,8 @@ class Anamnesis(Crypto):
 		self.facility = None
 
 		if anamnesis:
+			if "date_time" not in anamnesis or anamnesis['date_time'] == None:
+				anamnesis['date_time'] = str(datetime.now())
 			self.__dict__ = anamnesis
 
 	def set(self, complaint="", diagnosis="", drugs="", doctor="", facility=""):
