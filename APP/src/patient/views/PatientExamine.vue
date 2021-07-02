@@ -83,16 +83,10 @@
 					<b class="absolute top-0 -mt-3 rounded-full text-red-500 cursor-pointer">x</b>
 				</span>
 			</div>
-<<<<<<< HEAD
-<!--		
-			<input @click="$refs.modal.openModal()" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" 	v-model="anamnesis.drugs" id="obat"> 
--->
-
+			
+			<!-- Hasil Lab -->
 			<label>Hasil Pemeriksaan Lab :</label>
 			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Hasil Pemeriksaan Lab atau sebagainya" v-model="anamnesis.additional_check"></textarea>
-
-=======
->>>>>>> dc8f18cbce8142c5488bc3f06ce1f7af17a39faf
 		</section>
 
 		<p v-if="!readonly" @click="create()" class="mt-5 text-center yellow-glow-button">Simpan</p>
