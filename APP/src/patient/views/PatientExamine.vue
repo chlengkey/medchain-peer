@@ -36,7 +36,7 @@
 		<p class="text-2xl text-gray-800 font-bold mt-2 mb-0.5">Form Pemeriksaan Dokter</p>
 		<span class="text-gray-400 text-sm"><span class="text-red-600">*</span> Masukan data pemeriksaan disini</span>
 		<hr class="mt-4" />
-		<div class="grid grid-cols-3 gap-x-10 gap-y-4">
+		<div class="grid grid-cols-2 gap-x-10 gap-y-4">
 
 <!--
 			<div>
@@ -83,10 +83,13 @@
 					<b class="absolute top-0 -mt-3 rounded-full text-red-500 cursor-pointer">x</b>
 				</span>
 			</div>
-			
-			<!-- Hasil Lab -->
+<!--		
+			<input @click="$refs.modal.openModal()" placeholder="contoh: Paracetamol, CTM, Vit.B" class="w-full p-2 border-b border-gray-300" type="text" 	v-model="anamnesis.drugs" id="obat"> 
+-->
+
 			<label>Hasil Pemeriksaan Lab :</label>
 			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Hasil Pemeriksaan Lab atau sebagainya" v-model="anamnesis.additional_check"></textarea>
+
 		</section>
 
 		<p v-if="!readonly" @click="create()" class="mt-5 text-center yellow-glow-button">Simpan</p>
