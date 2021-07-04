@@ -40,6 +40,7 @@ class Anamnesis(Crypto):
 		self.drugs = []
 		self.doctor = None
 		self.facility = None
+		self.additional_check = None
 
 		if anamnesis:
 			if "date_time" not in anamnesis or anamnesis['date_time'] == None:
