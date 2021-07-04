@@ -87,6 +87,7 @@
 			<!-- Hasil Lab -->
 			<label>Hasil Pemeriksaan Lab :</label>
 			<textarea class="w-full p-2 border-b border-gray-300" placeholder="Hasil Pemeriksaan Lab atau sebagainya" v-model="anamnesis.additional_check"></textarea>
+
 		</section>
 
 		<p v-if="!readonly" @click="create()" class="mt-5 text-center yellow-glow-button">Simpan</p>
