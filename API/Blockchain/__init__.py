@@ -18,10 +18,8 @@ if not os.path.exists(DEFAULT_REJECT_BLOCK_PATH):
 if not os.path.exists(DEFAULT_PENDING_BLOCK_PATH):
 	os.mkdir(DEFAULT_PENDING_BLOCK_PATH)
 
-
 class Chain(Chain):
 	pass
-
 
 router = Router()
 routes = [

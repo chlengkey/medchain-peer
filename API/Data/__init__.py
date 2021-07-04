@@ -1,4 +1,5 @@
 from .components.Interface import Interface
+from .components.PatientInterface import PatientInterface
 from Router import Router
 
 router = Router()
@@ -20,6 +21,11 @@ routes = [
 				"path" : "",
 				"endpoint" : "GetListData",
 				"component" : Interface()
+			},
+			{
+				"path" : "patient/raw/<string:id>",
+				"endpoint" : "PatientRawData",
+				"component" : PatientInterface()
 			}
 		]
 	}

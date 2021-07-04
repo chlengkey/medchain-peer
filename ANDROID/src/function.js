@@ -22,7 +22,6 @@ export class crypto {
   }
   
   encrypt(msg){
-  	console.log(this.public);
   	return this.cryptoFunc.encrypt(msg, 'base64');
   }
 

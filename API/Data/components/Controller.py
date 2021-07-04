@@ -1,10 +1,12 @@
 from ..models import Patient, Anamnesis, Record
+from Blockchain.components.Chain import Chain
 import json, random
 import os
 
 class Controller():
 
 	DEFAULT_PATH_TO_PENDING_BLOCK = "Blockchain/store/pending"
+	DEFAULT_BLOCKCHAIN_PATH = "Blockchain/store/mined"
 
 	def add(self, data):
 		"""	Data akan ditambahkan ke folder pending sebelum dibuat menjadi satu blok utuh 
@@ -57,3 +59,21 @@ class Controller():
 			filelist.append(self.get(filename))
 
 		return filelist
+
+	def get_patient_from_blockchain(self, patient_id):
+		chain, valid = Chain().load(self.DEFAULT_BLOCKCHAIN_PATH)
+		recordData = []
+
+		for block in chain.extract()[1:]:
+			for data in block.data:
+				if patient_id in data.keys():
+					record_data = data[patient_id]
+					record_patient_data = Patient(record_data['patient'])
+					record_anamnesis_data = Anamnesis(record_data['anamnesis'])
+
+					recordData.append({
+						"patient" : record_patient_data.get(), 
+						"anamnesis" : record_anamnesis_data.get()
+					})
+
+		return recordData

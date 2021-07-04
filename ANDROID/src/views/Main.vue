@@ -51,20 +51,23 @@
          		</div>
          	</div>
 
-	<!--	<div style="font-family:Inter">
-				<ion-progress-bar v-if="showProgressBar" type="indeterminate"></ion-progress-bar>
-			</div>
-			<div class="h-20"></div>
-		
-		<div class="mx-4">
-			<div	class="border-b border-gray-400 pb-3 mb-5"
-				 	v-for="clinic in clinics" :key="clinic.clinicId"
-		    	   @click="proceedToMakeToken(clinic)">
-				<p class="font-bold text-sm">{{clinic.clinicName}}</p>
-				<p class="text-sm mt-0 text-gray-600">{{clinic.clinicAddress}}</p>
-		   </div>
+			<div style="font-family:Inter" class="mb-10">
+				<p class="text-lg font-bold mx-4 mt-0.5">Riwayat Pemeriksaan Anda</p>
+				<p class="text-sm text-gray-600 mx-4 mb-5">Setiap riwayat kesehatan kamu, kami catat kok</p>
 
-		</div> -->
+				<div class="mx-4">
+					<div	class="border-b border-gray-400 pb-3 mb-5"
+						 	v-for="record in record_data"
+				    	   @click="proceedToMakeToken(clinic)">
+						<p class="text-xs text-gray-600 font-semibold">DIAGNOSA</p>
+						<p class="text-sm mt-0 text-gray-900">{{record.anamnesis.diagnosis}}</p>
+						<p class="text-xs text-gray-600 mt-2 font-semibold">KELUHAN</p>
+						<p class="text-sm mt-0 text-gray-900 mb-3">{{record.anamnesis.complaint}}</p>
+						<p class="font-semibold text-xs text-gray-600">{{record.anamnesis.date_time}}</p>
+						<p class="text-sm mt-0 text-gray-900">{{record.anamnesis.facility}}</p>
+				   </div>
+				 </div>
+			</div> 
             
 		</ion-content>
 	</ion-page>
@@ -77,31 +80,52 @@
 	import Tokenization from '@/components/Tokenization.vue';
 	import MedRec from '@/components/MedicalRecord.vue';
 
+	// API's
+	import { crypto } from '@/function.js';
+	const axios = require('axios');
+	let cryptoFunc = new crypto();
 
 	export default{
 		components : {IonAvatar, IonPage, IonContent, IonIcon, Tokenization, MedRec},
 		data(){
 			return{
-				clinics : [
-					{
-						clinicName    : "Puskesmas Tomohon",
-						clinicAddress : "Jl. Raya Manado Tomohon",
-						clinicHost    : "http://192.168.1.13",
-						clinicId      : "b'-----BEGIN PUBLIC KEY-----\nMIICSDANBgkqhkiG9w0BAQEFAAOCAjUAMIICMAKCAicAtiONJExI/bu+GhPMY8Xl\nYdN1FtGuBgoxuCEHeAZeJ1TCllWcTMswBS5aooIFYEMgbgtA4Od8Ru5Zk9ZHbhSA\n1pKkiK/KuIoTSNMcxcTkC6TKjfNNGYW3UcXgBc624NIPqKZfwAueYsUYx4jIixDU\nULinGzc+SfIcBRnoCVWt4bcF/0iozOhe8BmQQbmktJo4dbdDLYfWN/x6gsKXyaPG\nRbZQ4+LjT3b+qIT65Y44w7lcXQ0OfzbgHYGzdOrNuNqgEBrCfkR4JZsGedPHPSra\nyJT4BGzhTbkBTzNWzhalM/s8EmWJlI/Glg6+pNxcInJUODrZkXqVCupP5Qgfe4HI\nZ1rrpLxdI6/G+IelGoceUoweBqYzjIkjVvZm3sq781i9CpyHzxcnTTu5XJsBrHgc\nSyDzVzIifCNB+yV2J7DT0gTNgBHpooxK8cAilaJYkDWf+AhIla6n5SqrMsg1Ax6Q\nLUAwEE5X9dDQVcT93tsOtHoPhZsDj6ewkrO999UrC3ZIDjTLsfIgNsUj6zsCBfIo\nV69nQXGyuRHf3d0tVM2rgt8FUbvFm2ivM1awf0nNr7LUqRUOyGjgHqgFlnj5g73L\nV+cYzwq0sTiGHFr0y5anRMpZTrgPHZvU7Ag+E+iB2QfmD8QvP476uYSOhw72FZCv\nhIZjowVrwl4ArM17fUtlQLEgp60XvRiScCS7wqxb6h6Xc+GQIJkUtDKT84iPoD8F\nb1dK0pjKuQIDAQAB\n-----END PUBLIC KEY-----'" 
-					},
-					{
-						clinicName    : "Puskesmas Manado",
-						clinicAddress : "Jl. Raya Manado Tomohon",
-						clinicHost    : "http://192.168.1.10",
-						clinicId      : "b'-----BEGIN PUBLIC KEY-----\nMIICSDANBgkqhkiG9w0BAQEFAAOCAjUAMIICMAKCAicAr9Wlj3LCYQXdMifsCXUu\nt4f0snZqIamj4+g89rIb8ms+LPpJkR9slmGk2KirxlQggrVgWAkoLU/lGrfs6pV5\n4Rem3Gp+SfMt8C9lg10eFtu1H2ZGrp3lcpBwW84RjR3pqUbBC0NOLKWQN1HA0k1n\nZUXgDWe6sgwkWPQ0cEeK5e/QE8GQavIPOgNu2HMW3JnEAZpDw/gni/h5jbPcjTtf\nsM7X1PFwU+LqPwZq3AVze5x7tvQMmfMH9cSSkZ4bdJ6n0/kYOjn3W0tKYurUOzBJ\nuciJBiozStc5LM4Rv5H5pZOvuczEEyV7G43OSVNp1m25P6z+5ww/Z4TtKCXnVIJa\n+7ybDkYhB+8+hq9z8RGzwXgGNFJ9TkgPAHgoCTDUORvZG9lMIcvbybzz5vkxgBbI\nqtFnPwUbRCG97ysNXpHroRXqx089IAUSqxaHKMFa+QTteB5BSc2UstuhNedpa7oP\n1YVGM7EVBZvfICvZhBrh5XWegS1arZF2obVTw6W0lpoJLjqMzT9AVk22lSDrTg0a\nby65fIhEcOtQhzsoaxD3hETRVMFm4SS2X1EFshwf0CiCFghBPH78cBUz6afPu64R\nvdXLYMECI6Pyy5fAuySOa4BVtdBpOFXB0vUbQ/Mo97bAqvrpnoJqttposCl4ZHKu\nQNUXQ9B6OGaR7AHNKy7nK52FH5of8VkZurTerOKcgn19nPr8sDMy5LuamOq0PE3D\ntailv+qOxQIDAQAB\n-----END PUBLIC KEY-----'" 
-					}
-				],
 				book,shieldCheckmark,notifications,
 				user : {},
 				blockchain : {
 					valid : true
-				}
+				},
+				record_data : []
 			}
+		},
+		methods : {
+			get_patient_data(){
+				var app = this;
+				let patientId = localStorage.getItem("logged")
+				axios.get("http://127.0.0.1:5000/data/patient/raw/" + patientId)
+					 .then(response => {
+					 	app.record_data = response.data;
+					 	response.data.forEach((patient_data,index) => {
+					 		let anamnesis = patient_data.anamnesis;
+					 		Object.keys(anamnesis).forEach(anamnesis_key => {
+					 			if (anamnesis_key != "date_time" && anamnesis_key != "date") {
+					 				let anamnesis_data = cryptoFunc.decrypt(anamnesis[anamnesis_key]);
+					 				anamnesis[anamnesis_key] = anamnesis_data;
+					 			}
+					 		})
+
+					 		let patient = patient_data.patient;
+					 		Object.keys(patient).forEach(patient_key => {
+					 			if(patient_key != "id"){
+					 				let patient_data = cryptoFunc.decrypt(patient[patient_key]);
+					 				patient[patient_key] = patient_data;	
+					 			}			 			
+					 		})
+					 		app.record_data[index].anamnesis = anamnesis;
+					 		app.record_data[index].patient = patient;
+					 	})
+
+					 })
+		    },
 		},
 		created(){
 			var app = this;
@@ -110,6 +134,7 @@
 				if (loginCredential) {
 					let data = localStorage.getItem(loginCredential); 
 					app.user = JSON.parse(data);
+					app.get_patient_data();
 				}
 			}, 1000)
 		}
