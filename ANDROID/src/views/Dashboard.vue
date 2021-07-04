@@ -129,23 +129,18 @@ export default  {
     }
   },
   methods : {
-    
     get_patient_data(){
       let patientId = localStorage.getItem("logged")
       axios.get("http://127.0.0.1:5000/data/patient/raw/" + patientId)
            .then(response => {
             console.log(response);
            })
-    },
-
-    tes : function(){
-      const app = this;
-      console.log(this.user);
     }
   },
 
   created(){
     this.get_patient_data();
+
     /*let loginCredential = localStorage.getItem('logged');
     if (loginCredential) {
       let data = localStorage.getItem('47deb444a873b5bb877c35196a56c086'); 

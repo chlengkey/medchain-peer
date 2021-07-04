@@ -3,30 +3,21 @@
 		<ion-content :fullscreen="true">
 
 			<div class="px-5 pt-6">
-				<img src="../assets/85418.svg" style="opacity:0.08;top:0;left:0;z-index:-1" class="opacity-5 w-full absolute z-0 mt-2 align-bottom col-span-5" >
-
+				<img src="../assets/85418.svg" style="opacity:0.08;top:0;left:0;z-index:-1" class="opacity-5 w-full absolute z-0 mt-2 align-bottom col-span-5">
 				<!-- Content Header -->
 				<div class="grid grid-cols-6 mb-5">
-				<img src="../assets/logo.png" class="w-32 mt-2 align-bottom col-span-5">
-					
-					<!-- Notifications 
-					<ion-icon class="rounded-full h-5 w-5 p-2" :icon="notifications" style="background-color: #F59E0B"/>-->
-					
+					<img src="../assets/logo.png" class="w-32 mt-2 align-bottom col-span-5">
 					<!-- Account -->
 					<ion-router-link href="/account">
 						<ion-avatar class="absolute right-0">
 							<img class="h-8 w-8 ahsolute ml-3" src="../assets/avatar.png">
 						</ion-avatar>
 					</ion-router-link>
-					
-
 				</div>
-
 				<div class="my-16" style="font-family:Inter">
 					<p class="text-xl text-center font-semibold">Hi, {{user.firstname}}</p>
 					<p class="text-sm text-center text-gray-500 mb-4">Ada yang bisa kami bantu untuk anda?</p>
 				</div>
-
 			</div>
 
 			<!-- Covid Protocol -->
@@ -46,27 +37,28 @@
 				<Tokenization ref="tokenization"></Tokenization>
          	</div>
 
-         	<div>
-         		<div class="border-b border-gray-400 pb-3 mb-5">
-         		</div>
-         	</div>
-
+			<div class="border-b border-gray-400 pb-3 mb-5"></div>
+			
 			<div style="font-family:Inter" class="mb-10">
 				<p class="text-lg font-bold mx-4 mt-0.5">Riwayat Pemeriksaan Anda</p>
 				<p class="text-sm text-gray-600 mx-4 mb-5">Setiap riwayat kesehatan kamu, kami catat kok</p>
-
 				<div class="mx-4">
-					<div	class="border-b border-gray-400 pb-3 mb-5"
-						 	v-for="record in record_data"
-				    	   @click="proceedToMakeToken(clinic)">
+					<div class="border-b border-gray-400 pb-3 mb-5"
+						 v-for="record in record_data">
 						<p class="text-xs text-gray-600 font-semibold">DIAGNOSA</p>
 						<p class="text-sm mt-0 text-gray-900">{{record.anamnesis.diagnosis}}</p>
 						<p class="text-xs text-gray-600 mt-2 font-semibold">KELUHAN</p>
 						<p class="text-sm mt-0 text-gray-900 mb-3">{{record.anamnesis.complaint}}</p>
+						<p class="text-xs text-gray-600 mt-2 font-semibold">OBAT</p>
+						<p class="text-sm mt-0 text-gray-900 mb-3">{{record.anamnesis.drugs}}</p>
 						<p class="font-semibold text-xs text-gray-600">{{record.anamnesis.date_time}}</p>
 						<p class="text-sm mt-0 text-gray-900">{{record.anamnesis.facility}}</p>
 				   </div>
-				 </div>
+				</div>
+				<div class="mx-4 text-xs bg-red-100 text-red-500 py-2 px-4 font-semibold rounded" 
+					 v-if="record_data.length <= 0">
+					Anda belum memiliki riwayat pemeriksaan
+				</div>
 			</div> 
             
 		</ion-content>
@@ -75,6 +67,7 @@
 
 <script type="text/javascript">
 	
+	// UI and Components
 	import { IonAvatar, IonPage, IonContent, IonIcon} from '@ionic/vue';
 	import { medical, timer, book, notifications, shieldCheckmark, lockClosed, close} from 'ionicons/icons';
 	import Tokenization from '@/components/Tokenization.vue';
